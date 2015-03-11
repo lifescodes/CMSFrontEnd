@@ -1,0 +1,66 @@
+<style>
+.check-cell{
+  width:60px;
+}
+.name-cell {
+    width: 100px;
+    text-align: left;
+}
+
+
+.normal-cell {
+  width: 100px;
+    /*color: lightseagreen;*/
+}
+</style>
+
+<!-- ===== template files ===== -->
+  <script type="text/ng-template" id="treeHeader">
+      <div>
+          <span class="check-cell pull-left">
+            <label>
+              <input type="checkbox" class="icheckbox_minimal" ng-model="vm.master" />
+            </label>
+          </span>
+          <span class="name-cell pull-left">Name</span>
+          <span class="normal-cell pull-left">Descriptions</span>
+          <span class="normal-cell pull-left">Counter</span>
+          <span class="pull-right margin-right-lg text-center">Action</span>
+      </div>
+  </script>
+
+  <script type="text/ng-template" id="treeNode">
+      <div>
+          <span class="check-cell pull-left text-center">
+            <label>
+              <input type="checkbox" name="child{{item.id}}" value="{{item.id}}"
+                     ng-checked="vm.master" ng-model="item.isSelected" />
+            </label>
+          </span>
+          <span class="name-cell pull-left">{{ item.name }}</span>
+          <span class="another-cell pull-left">{{item.descriptions}}</span>
+          <span class=" pull-left">{{item.counter}}</span>
+          <span class="pull-right margin-right-lg text-center">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-warning" ng-click="vm.edit(item)">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-danger" ng-click="vm.delete(item)">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </div>
+          </span>
+      </div>
+  </script>
+
+  <!-- ===== Usage with border & header ===== -->
+  <ad-tree-browser class="ad-border-default"
+                   tree-name="treeDemoBordered"
+                   row-ng-class="{added:item._selected}"
+                   tree-root="vm.tree"
+                   child-node="children"
+                   children-padding="16"
+                   bordered="false"
+                   node-header-url="treeHeader"
+                   node-template-url="treeNode">
+  </ad-tree-browser>

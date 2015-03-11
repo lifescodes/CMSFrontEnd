@@ -1,0 +1,52 @@
+.blogpost{
+  box-shadow: 0 0px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 0px 3px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 0 0px 3px rgba(0,0,0,0.25);
+
+  border:none 3px #000000;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+
+  padding:21px 34px 21px 34px;
+  margin-bottom: 16px;
+  color: #777;
+  background: #fff;
+}
+
+.blogpost .title {
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1.6px solid rgba(0,126,0,0.25);
+  padding-bottom:8px;
+  margin-bottom:5px;
+}
+
+/*.blogspot .title:after{
+  background: rgba(0,126,0,1);
+  display: block;
+  height: 5px;
+  width:10px;
+  content:"HI";
+  margin-top:10px;
+  margin-bottom:-1px;
+  bottom:0;
+}*/
+
+.blogpost .info {
+  padding-bottom: 5px;
+  padding-top: 6px;
+  font-size:14px;
+}
+
+.blogpost .info span{
+  padding-right: 16px;
+  color:rgba(20,103,204, 0.618);
+}
+
+.blogpost .content{
+  padding:0px;
+  padding-top:16px;
+  padding-bottom:16px;
+  background: #fff;
+}

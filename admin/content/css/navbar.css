@@ -1,0 +1,75 @@
+body .header .navbar {
+  margin-left:0px;
+}
+.navbar-simple .navbar-header .navbar-brand {
+
+  margin-bottom:21px;
+  /*border : 2px solid rgba(0,0,0,0.5);*/
+}
+
+.navbar-simple .navbar-header .navbar-brand img {
+  /*border : 2px solid rgba(0,0,0,0.5);*/
+  margin-top: 3px;
+
+}
+
+.navbar-simple .navbar-inner {
+  background: #fff;
+  filter: none !important;
+
+  box-shadow: 0 1px 2px rgba(20,103,204, 0.618);
+  -moz-box-shadow: 0 1px 2px rgba(20,103,204, 0.618);
+  -webkit-box-shadow: 0 1px 2px rgba(20,103,204, 0.618);
+  /*border-bottom: 1px solid rgba(0,0,0,0.2);*/
+  border-bottom: 3px solid rgba(20,103,204, 0.618);
+}
+
+.navbar-simple .navbar-inner .nav {
+  float: right;
+  margin-top:9px;
+}
+.navbar-simple .navbar-inner .nav li a {
+  background: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: #777;
+  font-size: 13px;
+  font-weight: 600;
+  /*border : 2px solid rgba(0,0,0,0.5);*/
+
+
+  /*padding-bottom: 3px;*/
+  /*padding-top:18px;*/
+  /*margin-bottom:18px;*/
+
+  -webkit-transition: background 0.16s linear,opacity 0.16s linear;
+  -moz-transition: background 0.16s linear,opacity 0.16s linear;
+  -ms-transition: background 0.16s linear,opacity 0.16s linear;
+  -o-transition: background 0.16s linear,opacity 0.16s linear;
+  transition: background 0.16s linear,opacity 0.16s linear;
+  -webkit-font-smoothing: antialiased;
+}
+.navbar-simple .navbar-inner .nav li a:hover {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  /*margin-top:7px;*/
+
+  border-top: 3px solid rgba(20,103,204, 0.618);
+  /*margin-bottom:10px;*/
+  /*background: rgba(20,103,204, 0.618
+  /*color:rgba(20,103,204, 0.618);*/
+  /*color:rgba(255,215,0,1);*/
+  /*color:rgba(255,255,255,1);*/
+  /*color:rgba(0,126,0,0.618);*/
+
+}
+.navbar-simple .navbar-inner .nav li.active a {
+  /*color:rgb(255,255,255);*/
+  /*background: rgba(0,126,0,0.6);*/
+  /*border-bottom: 3px solid rgba(20,103,204, 0.618);*/
+}
+.navbar-simple .navbar-inner .nav li.active:hover a {
+  border-bottom: none;
+}

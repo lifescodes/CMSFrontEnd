@@ -1,0 +1,56 @@
+<div class="box box-solid">
+  <div class="box-header">
+    <h3 class="box-title">Category Form</h3>
+  </div>
+  <div class="box-body">
+    <form nam="categoryForm" novalidate>
+      <input type="text" name="id" data-ng-model="vm.category.id" style="display: none;">
+      <div class="form-group">
+        <label class="control-label">Name</label>
+        <input type="text" class="form-control" name="name" data-ng-model="vm.category.name">
+        <p class="help-block">category name yang akan terlihat di halaman depan anda.</p>
+      </div>
+
+      <script type="text/ng-template" id="optionRenderer">
+        <option
+                value="{{cat.id}}">
+                {{cat.name}}
+        </option>
+      </script>
+
+      <div class="f orm-group">
+        <label class="control-label">Parent</label>
+        <select class="form-control" name="parent"
+                data-ng-model="vm.category.parent">
+                <option>
+                  None
+                </option>
+                <option data-ng-repeat="cat in vm.listdata track by cat.id"
+                        data-ng-selected="cat.id === vm.category.parent"
+                        value="{{cat.id}}">
+                        {{cat.name}}
+                </option>
+        </select>
+
+        <p class="help-block">category name yang akan terlihat di halaman depan anda.</p>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Descriptions</label>
+        <textarea class="form-control" name="descriptions" rows="6" data-ng-model="vm.category.descriptions"></textarea>
+        <p class="help-block">
+          Keterangan category mungkin tidak akan ditampilkan, akan tetapi pada design yang berbeda mungkin akan ditampilkan.
+        </p>
+      </div>
+      <div class="pull-right">
+        <button class="btn btn-primary btn-flat" data-ng-click="vm.resetForm()">
+          <i class="fa fa-refresh"></i> Reset
+        </button>
+        <button type="submit" class="btn btn-primary btn-flat" data-ng-click="vm.save()">
+          <i class="fa fa-edit"></i> Save
+        </button>
+      </div>
+      <div class="clearfix"></div>
+
+    </form>
+  </div>
+</div>

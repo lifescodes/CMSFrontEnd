@@ -1,0 +1,18 @@
+<div class="box-solid" display="block" ng-class="box.classBox" ng-style="box.styleBox" data-ng-controller="Box as box">
+  <dr-box-header>
+    <h3 class="box-title">Post</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-default btn-flat btn-sm" data-ng-click="box.minimize($event)">
+        <i class="{{box.classIconMin}}"></i>
+      </button>
+    </div>
+  </dr-box-header>
+  <dr-box-body display="{{box.styleBody}}">
+    <div class="form-group">
+      <input type="text" class="form-control input-lg" placeholder="Your Post Title Here...">
+    </div>
+    <div class="form-group">
+      <textarea ckeditor="editorOptions" ng-model="text"></textarea>
+    </div>
+  </dr-box-body>
+</div>

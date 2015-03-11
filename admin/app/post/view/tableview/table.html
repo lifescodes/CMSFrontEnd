@@ -1,0 +1,50 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th style="text-align: center;">
+        <label>
+          <input type="checkbox" class="icheckbox_minimal"
+                 data-ng-model="vm.bulkCheck"
+                 data-ng-click="vm.bulkCheckClick()" />
+        </label>
+      </th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Category</th>
+      <th>Tags</th>
+      <th>Comment</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="ps in vm.listdata.post track by ps.id">
+      <th style="text-align: center;">
+        <label>
+          <input type="checkbox" name="child{{ps.id}}" value="{{ps.id}}"
+                 data-ng-checked="vm.bulkCheck" data-ng-model="ps.isSelected" />
+        </label>
+      </th>
+      <td>{{ps.title}}</td>
+      <td>{{ps.user}}</td>
+      <td>{{ps.category}}</td>
+      <td>{{ps.tag}}</td>
+      <td>{{ps.comment}}</td>
+      <td>
+        {{ps.created || date}}
+      </td>
+      <td>{{ps.status}}</td>
+      <td>
+        <div class="btn-group btn-group-sm">
+          <button class="btn btn-warning" data-ng-click="vm.edit(ps)">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-danger" data-ng-click="vm.delete(ps)">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

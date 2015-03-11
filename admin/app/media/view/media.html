@@ -1,0 +1,92 @@
+<section class="content-header">
+  <h1>
+    Media Library
+    <small>View</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Media</a>
+    </li>
+    <li class="active">Library</li>
+  </ol>
+</section>
+
+<style media="screen">
+.masonry-brick {
+  margin: 1em;
+  display: none;
+}
+
+.masonry-brick.loaded {
+  display: block;
+}
+</style>
+
+<section class="content" id="content" data-ng-controller="MediaLibrary as vm">
+  <!-- content view -->
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="box box-solid">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <select class="form-control col-sm-4">
+                    <option>All({{vm.countType.all}})</option>
+                    <option>Images({{vm.countType.image}})</option>
+                    <option>Audio({{vm.countType.audio}})</option>
+                    <option>Video({{vm.countType.video}})</option>
+                    <option>Other({{vm.countType.other}})</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <select class="form-control col-sm-4">
+                    <option>All dates</option>
+                    <option>November 2014</option>
+                    <option>Desember 2014</option>
+                    <option>January 2015</option>
+                  </select>
+                </div>
+                <div class="col-sm-1">
+                  <button name="button" class="btn btn-flat btn-default">Filter</button>
+                </div>
+                <div class="pull-right col-sm-3">
+                  <input type="text" class="form-control" placeholder="Search...">
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <masonry class="col-sm-12" ng-show="vm.listdata.length > 0">
+          <div class="masonry-brick" ng-repeat="item in vm.listdata">
+            <div class="thumbnail" style="width: 170px; border-radius:1.6px;">
+              <a data-ng-click="vm.detail(item)" style="cursor: pointer;">
+                <img ng-src="{{vm.siteUrl+'/'+item.thumb_url+item.thumb_file}}" style="width:160px;">
+                <div ng-if="item.file_type!='image'">
+                  <div class="media-caption">{{item.name}}</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </masonry>
+
+        <div class="col-sm-12" ng-show="vm.listdata.length == 0">
+          <div class="callout callout-warning">
+
+            <h4>Media File Empty</h4>
+            <p>
+              Sorry, there are no image, video, audio or other data that has been uploaded.<br/>
+              Please Upload media file from <a href="#/media/upload">Add New</a> left Side bar menu.<br/>
+
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

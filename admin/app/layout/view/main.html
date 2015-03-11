@@ -1,0 +1,16 @@
+<header class="header"
+        data-ng-include="'app/layout/view/topnav.html'">
+</header>
+
+<div class="wrapper row-offcanvas row-offcanvas-left">
+  <aside data-ng-include="'app/layout/view/sidenav.html'"
+         data-ng-class="{'collapse-left':vm.isVisible}"
+         class="left-side sidebar-offcanvas"
+         style="min-height: 1589px;">
+  </aside>
+
+  <aside data-ng-view data-ng-class="{'strech':vm.isVisible}"
+         class="right-side"
+        style="top:0; margin-top:0px;">
+  </aside>
+</div>

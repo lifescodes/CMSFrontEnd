@@ -1,0 +1,53 @@
+<div class="widget">
+  <div class="widget-body">
+    <div class="input-group input-group-sm">
+      <input type="text" class="form-control" placeholder="Input Keyword...">
+      <span class="input-group-btn">
+        <button class="btn btn-success btn-flat" type="button">Go!</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="widget" data-ng-controller="Blog as vm">
+  <div class="widget-head">
+    Category
+  </div>
+  <div class="widget-body" data-ng-repeat="cat in vm.listCategory">
+    <a href="#/blog/category/{{cat.id}}"> >> {{cat.name}}</a>
+  </div>
+</div>
+
+<div class="widget" data-ng-controller="Blog as vm">
+  <div class="widget-head">
+    Tags
+  </div>
+  <div class="widget-body">
+    <span data-ng-repeat="tag in vm.listTag">
+      <a class="btn btn-info btn-xs" style="margin-bottom:5px;" href="#/blog/tag/{{tag.id}}">{{tag.name}}</a> &nbsp;
+    </span>
+  </div>
+</div>
+
+<div class="widget">
+  <div class="widget-head">
+    Last Comment
+  </div>
+  <div class="widget-body">
+    Content Widget 2
+  </div>
+</div>
+
+<div class="box box-solid bg-aqua">
+  <div class="box-header">
+    <h3 class="box-title">Info Tile</h3>
+  </div>
+  <div class="box-body">
+    Box class:
+    <code>.box.box-solid.bg-aqua</code>
+    <p>
+      amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel. berliner weisse wort chiller adjunct hydrometer alcohol aau! sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    </p>
+  </div>
+  <!-- /.box-body -->
+</div>

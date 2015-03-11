@@ -1,0 +1,52 @@
+<div class="box-solid" display="block" ng-class="box.classBox" ng-style="box.styleBox" data-ng-controller="Box as box">
+  <dr-box-header>
+    <h3 class="box-title">Action</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-default btn-flat btn-sm" data-ng-click="box.minimize($event)">
+        <i class="{{box.classIconMin}}"></i>
+      </button>
+    </div>
+  </dr-box-header>
+  <dr-box-body display="{{box.styleBody}}">
+    <div>
+      <label class="">
+        <i class="fa fa-edit"></i>
+      </label>
+      &nbsp;
+      <label>Status : </label>
+      <label>Saved</label>
+    </div>
+
+    <div>
+      <label class="">
+        <i class="fa fa-calendar"></i>
+      </label>
+      &nbsp;
+      <label>Created : </label>
+      <label>Create</label>
+    </div>
+
+    <div>
+      <label class="">
+        <i class="fa fa-calendar"></i>
+      </label>
+      &nbsp;
+      <label>Modified : </label>
+      <label>Modify</label>
+    </div>
+
+  </dr-box-body>
+  <div class="box-footer text-center">
+    <button class="btn  btn-primary btn-flat">
+      <i class="fa fa-edit"></i> Save
+    </button>
+
+    <button class="btn  btn-info btn-flat">
+      <i class="fa fa-globe"></i> Publish
+    </button>
+
+    <button class="btn btn-warning btn-flat">
+      <i class="fa fa-eye"></i> See
+    </button>
+  </div>
+</div>

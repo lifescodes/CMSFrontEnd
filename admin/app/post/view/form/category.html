@@ -1,0 +1,23 @@
+<div class="box-solid" display="block" ng-class="box.classBox" ng-style="box.styleBox">
+  <div class="box-header">
+    <h3 class="box-title">Category</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-default btn-flat btn-sm" data-ng-click="box.minimize($event)">
+        <i class="{{box.classIconMin}}"></i>
+      </button>
+    </div>
+  </div>
+  <div class="box-body" style="display: block;">
+    <div class="" data-ng-controller="Post as vm">
+    <script type="text/ng-template" id="categoryTree">
+      {{cat.name}}
+      <ul>
+      <li data-ng-repeat="cat in vm.listdata.category track by cat.id" data-ng-include="'categoryTree'"></li>
+      </ul>
+    </script>
+    <ul>
+      <li data-ng-repeat="cat in vm.listdata.category track by cat.id" data-ng-include="'categoryTree'"></li>
+    </ul>
+  </div>
+</div>
+</div>

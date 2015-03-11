@@ -1,0 +1,19 @@
+.media-caption{
+  /*display: block;*/
+  overflow: hidden;
+  position: absolute;
+  top:0;
+  right: 0;
+  left: 0;
+  bottom:2;
+  padding: 6px;
+  margin-left:6px;
+  word-wrap: break-word;
+  margin-left: auto;
+  margin-right: auto
+  webkit-transition: opacity .1s;
+  transition: opacity .1s;
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  font-size: 13px;
+}

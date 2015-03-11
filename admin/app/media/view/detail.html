@@ -1,0 +1,104 @@
+<!-- // <script type="text/ng-template" id="detail.html"> -->
+<div class="row" >
+  <div class="col-sm-7">
+    <div ng-if="vm.media.file_type=='image'">
+      <img ng-src="{{vm.media.url}}">
+    </div>
+    <div ng-if="vm.media.file_type!='image' && vm.media.file_type != 'audio' && vm.media.file_type !='video'">
+      <img ng-src="{{vm.media.thumb}}" style="width: 512px;">
+    </div>
+
+    <!-- <div ng-if="vm.media.file_type!='image'">
+      <img ng-src="{{vm.siteUrl+'/'+vm.media.thumb_url+vm.media.thumb_file}}" style="height:512px">
+    </div> -->
+
+    <div ng-if="vm.media.file_type == 'video' || vm.media.file_type == 'audio'">
+      <div ng-controller="VideoPlayer as vd" class="videogular-container" ng-init="vd.injectSource(vm.media)">
+        <videogular vg-theme="vd.theme.url">
+          <vg-media vg-src="vd.sources">
+        </vg-media>
+
+        <vg-controls vg-autohide="vd.config.plugins.controls.autoHide" vg-autohide-time="vd.config.plugins.controls.autoHideTime">
+          <vg-play-pause-button></vg-play-pause-button>
+          <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+          <vg-scrub-bar>
+            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          </vg-scrub-bar>
+          <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+          <vg-time-display>{{ totalTime | date:'mm:ss' }}</vg-time-display>
+          <vg-volume>
+            <vg-mute-button></vg-mute-button>
+            <vg-volume-bar></vg-volume-bar>
+          </vg-volume>
+          <vg-fullscreen-button></vg-fullscreen-button>
+        </vg-controls>
+        <vg-buffering></vg-buffering>
+        <vg-overlay-play></vg-overlay-play>
+      </videogular>
+    </div>
+  </div>
+
+</div>
+<div class="col-sm-5">
+  <div style="font-size: 10px; line-height:13px" >
+    <label>File Name</label> : {{vm.media.file_name}} <br/>
+    <label>File Type</label> : {{vm.media.file_type}} <br/>
+    <label>Mime Type</label> : {{vm.media.file_mime}} <br/>
+    <label>File Size</label> : {{vm.media.file_size/1024 | number:0}} KB <br/>
+    <label>Uploaded Date</label> : {{vm.media.created | date:'medium':'+8'}} <br/>
+    <div ng-if="vm.media.modified">
+      <label>Modified Date</label> : {{vm.media.modified | date:'medium':'+8'}} <br/>
+    </div>
+    <div ng-if="vm.media.file_type=='image'">
+      <label>Dimension</label> : {{vm.media.dimension_width}}x{{vm.media.dimension_height}} pixel <br/>
+    </div>
+    <hr/>
+  </div>
+
+  <div class="" style="font-size: 13px; padding:5px; padding-right:20px;">
+    <form class="form-horizontal" novalidate>
+      <input type="text" name="vm.media.id" ng-model="vm.media.id" style="display:none;">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">URL</label>
+        <div class="col-sm-9">
+          <input class="form-control input-sm" type="text" disabled style="cursor:grab;"
+          value="{{vm.siteUrl+'/'+vm.media.file_url+vm.media.file_name}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Name</label>
+        <div class="col-sm-9">
+          <input class="form-control input-sm" type="text" name="vm.media.name" ng-model="vm.media.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Description</label>
+        <div class="col-sm-9">
+          <textarea class="form-control" rows="5"
+          name="vm.date.descriptions"
+          ng-model="vm.media.descriptions">
+        </textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-3">&nbsp;</div>
+      <div class="col-sm-9">
+        <div class="btn btn-flat btn-danger" data-ng-click="vm.delete(vm.media) && vm.countMediaType()">
+          <i class="fa fa-trash-o"></i>
+          Delete
+        </div>
+        <div class="btn btn-flat btn-warning" data-ng-click="vm.dialog.close()">
+          <i class="glyphicon glyphicon-remove"></i>
+          Close
+        </div>
+        <div class="btn btn-flat btn-info" data-ng-click="vm.update() && vm.countMediaType()">
+          <i class="fa fa-edit"></i>
+          Save
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+<!-- </script> -->

@@ -1,0 +1,61 @@
+{
+  "name": "nglat",
+  "version": "0.0.1",
+  "description": "Latihan AngularJS",
+  "authors": [
+    "Lalu Erfandi Maula Yusnu"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/lifecode",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.3.0"
+  },
+  "dependencies": {
+    "angular": "~1.3.0",
+    "angular-route": "~1.3.0",
+    "angular-animate": "~1.3.0",
+    "angular-sanitize": "~1.3.0",
+    "extras.angular.plus": "~0.9.0",
+    "toastr": "~2.0.3",
+    "bootstrap": "~3.2.0",
+    "moment": "~2.8.1",
+    "jquery": "~2.1.1",
+    "jqueryui": "~1.11.1",
+    "raphael": "~2.1.0",
+    "ionicons": "~2.0.1",
+    "restangular": "1.4.0",
+    "font-awesome": "~4.1.0",
+    "angular-ui-bootstrap-bower": "~0.11.0",
+    "adminlte": "~1.3.1",
+    "ckeditor": "~4.4.7",
+    "adapt-strap": "~2.1.6",
+    "ng-ckeditor": "~0.2.1",
+    "ng-tags-input": "~2.1.1",
+    "ng-table": "~0.5.4",
+    "angular-smart-table": "~1.4.12",
+    "angular-bootstrap-grid-tree": "*",
+    "angular-masonry": "~0.11.0",
+    "angular-file-upload": "~1.1.5",
+    "angular-deckgrid": "~0.5.0",
+    "masonry": "~3.2.2",
+    "jquery-bridget": "~1.1.0",
+    "ngDialog": "~0.3.12",
+    "angular-translate": "~2.6.1",
+    "videogular": "~1.0.1",
+    "videogular-themes-default": "~1.0.1",
+    "videogular-controls": "~1.0.1",
+    "videogular-buffering": "~1.0.1",
+    "videogular-overlay-play": "~1.0.1",
+    "videogular-poster": "~1.0.1",
+    "videogular-ima-ads": "~1.0.1",
+    "videogular-angulartics": "~1.0.1"
+  }
+}

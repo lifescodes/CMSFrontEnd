@@ -1,0 +1,74 @@
+<section class="content-header">
+  <h1>
+    Blog Tag
+    <small>Tag Table View</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Blog</a>
+    </li>
+    <li class="active">tag</li>
+  </ol>
+</section>
+
+<section class="content" id="content" data-ng-controller="Tag as vm">
+  <!-- content view -->
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="box box-solid">
+        <div class="box-header">
+          <h3 class="box-title">Tag Form</h3>
+        </div>
+        <div class="box-body">
+          <form nam="tagForm" novalidate>
+            <input type="text" name="id" data-ng-model="vm.tag.id" style="display: none;">
+            <div class="form-group">
+              <label class="control-label">Name</label>
+              <input type="text" class="form-control" name="name" data-ng-model="vm.tag.name">
+              <p class="help-block">Tag name yang akan terlihat di halaman depan anda.</p>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Descriptions</label>
+              <textarea class="form-control" name="descriptions" rows="6" data-ng-model="vm.tag.descriptions"></textarea>
+              <p class="help-block">
+                Keterangan tag mungkin tidak akan ditampilkan, akan tetapi pada design yang berbeda mungkin akan ditampilkan.
+              </p>
+            </div>
+            <div class="pull-right">
+              <button type="submit" class="btn btn-primary btn-flat" data-ng-click="vm.save()">
+                <i class="fa fa-edit"></i> Save
+              </button>
+            </div>
+            <div class="clearfix"></div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-xs-8">
+      <div class="box box-solid">
+        <div class="box-body">
+
+          <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/tag/view/tableview/boxtoolup.html'">
+          </div>
+
+          <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
+
+          <div class="box-tools" data-ng-include="'app/tag/view/tableview/boxtooldown.html'">
+          </div>
+
+          <div style="margin-bottom:9px;" data-ng-include="'app/tag/view/tableview/table.html'"></div>
+
+          <div class="box-tools" data-ng-include="'app/tag/view/tableview/boxtooldown.html'">
+          </div>
+
+        </div>
+        <!-- end box-body -->
+      </div>
+      <!-- end box -->
+    </div>
+    <!-- end col-xs-12 -->
+  </div>
+  <!-- end row -->
+</section>

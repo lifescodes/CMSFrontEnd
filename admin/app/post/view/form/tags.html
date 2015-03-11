@@ -1,0 +1,17 @@
+<div class="box-solid" display="block" ng-class="box.classBox" ng-style="box.styleBox" data-ng-controller="Box as box">
+  <dr-box-header>
+    <h3 class="box-title">Tags</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-default btn-flat btn-sm" data-ng-click="box.minimize($event)">
+        <i class="{{box.classIconMin}}"></i>
+      </button>
+    </div>
+  </dr-box-header>
+  <dr-box-body display="{{box.styleBody}}">
+    <tags-input ng-model="tags"></tags-input>
+    <div class="" ng-repeat="tag in tags">
+      {{tag.text}}
+      <br>
+    </div>
+  </dr-box-body>
+</div>

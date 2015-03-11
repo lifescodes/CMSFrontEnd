@@ -1,0 +1,127 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+  <!-- Sidebar user panel -->
+  <div class="user-panel">
+    <div class="pull-left image">
+      <img src="content/img/avatar3.png" class="img-circle" alt="User Image">
+    </div>
+    <div class="pull-left info">
+      <p>Hello, Jane</p>
+
+      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+  </div>
+  <!-- search form -->
+  <form action="#" method="get" class="sidebar-form">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Search...">
+      <span class="input-group-btn">
+        <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+        </button>
+      </span>
+    </div>
+  </form>
+  <!-- /.search form -->
+  <!-- sidebar menu: : style can be found in sidebar.less -->
+  <ul class="sidebar-menu">
+    <li class="active">
+      <a href="index.html">
+        <i class="fa fa-dashboard"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li class="treeview" ng-class="{'active':chart.isTree}" data-ng-controller="SideNav as chart">
+      <a href ng-click="chart.toggleTree($event)">
+        <i class="fa fa-edit"></i>
+        <span>Blog</span>
+        <i class="pull-right fa" ng-class="{'fa-angle-down': chart.isTree, 'fa-angle-left':!chart.isTree}"></i>
+      </a>
+      <ul class="treeview-menu" ng-style="chart.style">
+        <li>
+          <a href="#/blog/post" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> Post
+          </a>
+        </li>
+        <li>
+          <a href="#/blog/category" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> Category
+          </a>
+        </li>
+        <li>
+          <a href="#/blog/tag" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> Tags
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="treeview" ng-class="{'active':chart.isTree}" data-ng-controller="SideNav as media">
+      <a href ng-click="media.toggleTree($event)">
+        <i class="fa fa-edit"></i>
+        <span>Media</span>
+        <i class="pull-right fa" ng-class="{'fa-angle-down': media.isTree, 'fa-angle-left':!media.isTree}"></i>
+      </a>
+      <ul class="treeview-menu" ng-style="media.style">
+        <li>
+          <a href="#/media/upload" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> Add New
+          </a>
+        </li>
+        <li>
+          <a href="#/media/library" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> Library
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="index.html">
+        <i class="fa fa-comments"></i>
+        <span>Comment</span>
+      </a>
+    </li>
+
+    <li class="treeview" ng-class="{'active':setting.isTree}" data-ng-controller="SideNav as setting">
+      <a href="#" ng-click="setting.toggleTree($event)">
+        <i class="fa fa-edit"></i>
+        <span>Users</span>
+        <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu" ng-style="setting.style">
+
+        <li>
+          <a href="#/settings" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> All User
+          </a>
+        </li>
+
+        <li>
+          <a href="#/settings" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> My Profile
+          </a>
+        </li>
+
+      </ul>
+    </li>
+
+
+    <li class="treeview" ng-class="{'active':setting.isTree}" data-ng-controller="SideNav as setting">
+      <a href="#" ng-click="setting.toggleTree($event)">
+        <i class="fa fa-edit"></i>
+        <span>Settings</span>
+        <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu" ng-style="setting.style">
+        <li>
+          <a href="#/settings" style="margin-left: 10px;">
+            <i class="fa fa-angle-double-right"></i> General
+          </a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+</section>
+<!-- /.sidebar -->
+</aside>
