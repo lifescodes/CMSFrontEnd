@@ -1,11 +1,9 @@
-<table id="example2" class="table table-bordered table-hover">
+<table ng-hide="vm.listdata.post.length == 0" class="table table-bordered table-hover">
   <thead>
     <tr>
       <th style="text-align: center;">
         <label>
-          <input type="checkbox" class="icheckbox_minimal"
-                 data-ng-model="vm.bulkCheck"
-                 data-ng-click="vm.bulkCheckClick()" />
+          <input type="checkbox" class="icheckbox_minimal" data-ng-model="vm.bulkCheck" data-ng-click="vm.bulkCheckClick()" />
         </label>
       </th>
       <th>Title</th>
@@ -22,8 +20,7 @@
     <tr ng-repeat="ps in vm.listdata.post track by ps.id">
       <th style="text-align: center;">
         <label>
-          <input type="checkbox" name="child{{ps.id}}" value="{{ps.id}}"
-                 data-ng-checked="vm.bulkCheck" data-ng-model="ps.isSelected" />
+          <input type="checkbox" name="child{{ps.id}}" value="{{ps.id}}" data-ng-checked="vm.bulkCheck" data-ng-model="ps.isSelected" />
         </label>
       </th>
       <td>{{ps.title}}</td>

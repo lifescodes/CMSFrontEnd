@@ -39,17 +39,22 @@
       <ul class="treeview-menu" ng-style="chart.style">
         <li>
           <a href="#/blog/post" style="margin-left: 10px;">
-            <i class="fa fa-angle-double-right"></i> Post
+            <i class="fa fa-edit"></i> Post
+          </a>
+        </li>
+        <li>
+          <a href="#/blog/post" style="margin-left: 10px;">
+            <i class="fa fa-comments"></i> Comment
           </a>
         </li>
         <li>
           <a href="#/blog/category" style="margin-left: 10px;">
-            <i class="fa fa-angle-double-right"></i> Category
+            <i class="fa fa-th-large"></i> Category
           </a>
         </li>
         <li>
           <a href="#/blog/tag" style="margin-left: 10px;">
-            <i class="fa fa-angle-double-right"></i> Tags
+            <i class="fa fa-tags"></i> Tags
           </a>
         </li>
       </ul>
@@ -73,13 +78,6 @@
           </a>
         </li>
       </ul>
-    </li>
-
-    <li>
-      <a href="index.html">
-        <i class="fa fa-comments"></i>
-        <span>Comment</span>
-      </a>
     </li>
 
     <li class="treeview" ng-class="{'active':setting.isTree}" data-ng-controller="SideNav as setting">

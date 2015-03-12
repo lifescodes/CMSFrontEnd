@@ -60,7 +60,7 @@
           </div>
         </div>
 
-
+        <div ng-hide="vm.listdata.length == 0">
         <masonry class="col-sm-12" ng-show="vm.listdata.length > 0">
           <div class="masonry-brick" ng-repeat="item in vm.listdata">
             <div class="thumbnail" style="width: 170px; border-radius:1.6px;">
@@ -73,9 +73,10 @@
             </div>
           </div>
         </masonry>
+      </div>
 
         <div class="col-sm-12" ng-show="vm.listdata.length == 0">
-          <div class="callout callout-warning">
+          <div class="callout callout-info">
 
             <h4>Media File Empty</h4>
             <p>

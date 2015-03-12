@@ -1,0 +1,3 @@
+#remove bower component directory
+admin/vendor/
+site/vendor/

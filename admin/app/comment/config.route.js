@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.blog')
+    .module('app.comment')
     .run(appRun);
 
   // appRun.$inject = ['routehelper']
@@ -14,12 +14,12 @@
 
   function getRoutes() {
     return [{
-      url: '/blog',
+      url: '/blog/comment',
       config: {
-        templateUrl: 'app/blog/blog.html',
-        controller: 'Blog',
+        templateUrl: 'app/comment/view/comment.html',
+        controller: 'Comment',
         controllerAs: 'vm',
-        title: 'blog'
+        title: 'Comment'
       }
     }];
   }

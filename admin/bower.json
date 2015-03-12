@@ -1,7 +1,7 @@
 {
-  "name": "nglat",
+  "name": "CMSFrontEnd",
   "version": "0.0.1",
-  "description": "Latihan AngularJS",
+  "description": "CMSFrontEnd Administrator",
   "authors": [
     "Lalu Erfandi Maula Yusnu"
   ],
@@ -9,11 +9,7 @@
   "homepage": "https://github.com/lifecode",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "vendor",
-    "test",
-    "tests"
+    "vendor"
   ],
   "devDependencies": {
     "angular-mocks": "~1.3.0"

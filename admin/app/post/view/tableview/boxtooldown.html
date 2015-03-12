@@ -1,31 +1,30 @@
-<div class="no-margin pull-left">
-  <form name="bulkForm" class="form-inline" novalidate>
+<div ng-hide="vm.listdata.post.length == 0">
+  <div class="no-margin pull-left">
+    <form name="bulkForm" class="form-inline" novalidate>
 
-    <div class="form-group" style="padding-left:0px; margin-left:0px;">
-      <select class="form-control" data-ng-model="vm.bulkSelect" style="padding-left:0px; margin-left:0px;">
-        <option value="action">Bulk Action</option>
-        <option value="delete">Move to Trash</option>
-      </select>
-      &nbsp;
-      <button type="submit" class="btn btn-warning btn-flat" data-ng-click="vm.bulk()">
-        Apply
-      </button>
-    </div>
-  </form>
+      <div class="form-group" style="padding-left:0px; margin-left:0px;">
+        <select class="form-control" data-ng-model="vm.bulkSelect" style="padding-left:0px; margin-left:0px;">
+          <option value="action">Bulk Action</option>
+          <option value="delete">Move to Trash</option>
+        </select>
+        &nbsp;
+        <button type="submit" class="btn btn-warning btn-flat" data-ng-click="vm.bulk()">
+          Apply
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- pagination -->
+  <ul class="pagination no-margin pull-right inline">
+    <li>
+      <a data-ng-click="vm.prevPage()" style="cursor:pointer">«</a>
+    </li>
+    <li ng-repeat="i in vm.page.totalArray track by $index" data-ng-class="{'active': vm.page.current === ($index+1)}" style="cursor:pointer">
+      <a data-ng-click="vm.changePage($index+1)">{{$index+1}}</a>
+    </li>
+    <li>
+      <a data-ng-click="vm.nextPage()" style="cursor:pointer">»</a>
+    </li>
+  </ul>
+  <div class="clearfix" style="margin-bottom:10px;"></div>
 </div>
-
-
-<!-- pagination -->
-<ul class="pagination no-margin pull-right inline">
-  <li>
-    <a data-ng-click="vm.prevPage()" style="cursor:pointer">«</a>
-  </li>
-  <li ng-repeat="i in vm.page.totalArray track by $index" data-ng-class="{'active': vm.page.current === ($index+1)}" style="cursor:pointer">
-    <a data-ng-click="vm.changePage($index+1)">{{$index+1}}</a>
-  </li>
-  <li>
-    <a data-ng-click="vm.nextPage()" style="cursor:pointer">»</a>
-  </li>
-</ul>
-
-<div class="clearfix" style="margin-bottom:10px;"></div>

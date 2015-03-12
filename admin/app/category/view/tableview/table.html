@@ -1,16 +1,33 @@
 <style>
 .check-cell{
   width:60px;
+  padding-right: 3px;
 }
 .name-cell {
-    width: 100px;
-    text-align: left;
+  width: 130px;
+  text-align: left;
+  padding-right: 16px;
+  /*background-color: #000;*/
 }
-
-
-.normal-cell {
+.desc-cell {
+  width: 260px;
+  /*color: lightseagreen;*/
+  text-align: left;
+  padding-right: 16px;
+  padding-left: 5px;
+  /*background-color: #DDD;*/
+}
+.counter-cell{
   width: 100px;
-    /*color: lightseagreen;*/
+  /*color: lightseagreen;*/
+  text-align: center;
+  /*background-color: #EEE;*/
+}
+.action-cell{
+  width: 100px;
+  /*color: lightseagreen;*/
+  text-align: center;
+  /*background-color: #E0E;*/
 }
 </style>
 
@@ -23,24 +40,24 @@
             </label>
           </span>
           <span class="name-cell pull-left">Name</span>
-          <span class="normal-cell pull-left">Descriptions</span>
-          <span class="normal-cell pull-left">Counter</span>
-          <span class="pull-right margin-right-lg text-center">Action</span>
+          <span class="desc-cell pull-left">Descriptions</span>
+          <span class="counter-cell pull-left">Counter</span>
+          <span class="action-cell pull-right">Action</span>
       </div>
   </script>
 
   <script type="text/ng-template" id="treeNode">
       <div>
           <span class="check-cell pull-left text-center">
-            <label>
-              <input type="checkbox" name="child{{item.id}}" value="{{item.id}}"
-                     ng-checked="vm.master" ng-model="item.isSelected" />
+            <label ng-if="item.name != 'Uncategorized'">
+              <input type="checkbox" name="child{{item.id}}" value="{{item.id}}" ng-checked="vm.master" ng-model="item.isSelected" />
             </label>
+            <label ng-show="item.name == 'Uncategorized'">&nbsp;</label>
           </span>
           <span class="name-cell pull-left">{{ item.name }}</span>
-          <span class="another-cell pull-left">{{item.descriptions}}</span>
-          <span class=" pull-left">{{item.counter}}</span>
-          <span class="pull-right margin-right-lg text-center">
+          <span class="desc-cell pull-left">{{item.descriptions}}</span>
+          <span class="counter-cell pull-left">{{item.counter}}</span>
+          <span class="action-cell pull-right" ng-hide="item.name == 'Uncategorized'">
             <div class="btn-group btn-group-sm">
               <button class="btn btn-warning" ng-click="vm.edit(item)">
                 <i class="fa fa-edit"></i>

@@ -1,7 +1,7 @@
 <section class="content-header">
   <h1>
     Blog Tag
-    <small>Tag Table View</small>
+    <small>View</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Blog</a>
@@ -49,20 +49,23 @@
     <div class="col-xs-8">
       <div class="box box-solid">
         <div class="box-body">
-
-          <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/tag/view/tableview/boxtoolup.html'">
+          <div ng-show="vm.list.length > 0">
+            <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/tag/view/tableview/boxtoolup.html'"></div>
+            <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
+            <div class="box-tools" data-ng-include="'app/tag/view/tableview/boxtooldown.html'"></div>
+            <div style="margin-bottom:9px;" data-ng-include="'app/tag/view/tableview/table.html'"></div>
+            <div class="box-tools" data-ng-include="'app/tag/view/tableview/boxtooldown.html'"></div>
           </div>
-
-          <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
-
-          <div class="box-tools" data-ng-include="'app/tag/view/tableview/boxtooldown.html'">
+          <div ng-show="vm.list.length == 0">
+            <br/>
+            <div class="callout callout-info">
+              <h4>Tag Empty</h4>
+              <p>
+                Sorry, there are no Tag that has been Added.<br/>
+                Please Add Tag from Form in the left side.<br/>
+              </p>
+            </div>
           </div>
-
-          <div style="margin-bottom:9px;" data-ng-include="'app/tag/view/tableview/table.html'"></div>
-
-          <div class="box-tools" data-ng-include="'app/tag/view/tableview/boxtooldown.html'">
-          </div>
-
         </div>
         <!-- end box-body -->
       </div>
