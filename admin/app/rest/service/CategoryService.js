@@ -12,18 +12,18 @@
     var vm = this;
     vm.list = [];
     var service = {
-      tree : getListTree,
-      list: getListCategory,
-      get: getCategory,
-      search: searchCategory,
-      save: saveCategory,
-      update: updateCategory,
-      delete: deleteCategory
+      tree : tree,
+      list: list,
+      get: get,
+      search: search,
+      save: save,
+      update: update,
+      remove: remove
     };
 
     return service;
 
-    function getListTree(num, limit) {
+    function tree(num, limit) {
       if (num === undefined) {
         return BlogRest.all('category-tree').getList();
       } else {
@@ -34,7 +34,7 @@
       }
     }
 
-    function getListCategory(num, limit) {
+    function list(num, limit) {
       if (num === undefined) {
         return BlogRest.all('category').getList();
       } else {
@@ -45,15 +45,15 @@
       }
     }
 
-    function getCategory(id) {
+    function get(id) {
       return BlogRest.one('category', id).get();
     }
 
-    function saveCategory(data) {
+    function save(data) {
       return BlogRest.all('category').post(data);
     }
 
-    function updateCategory(id, catedit) {
+    function update(id, catedit) {
       var ps = BlogRest.one('category', id).get();
       ps.then(
         function(data) {
@@ -73,11 +73,11 @@
       return ps;
     }
 
-    function deleteCategory(id) {
+    function remove(id) {
       var cat = BlogRest.one('category', id).get();
       cat.then(
-        function(category) {
-          category.remove();
+        function(response) {
+          response.remove();
         },
         function(response) {
           console.log("Error with status code", response.status);
@@ -87,7 +87,7 @@
       return cat;
     }
 
-    function searchCategory() {
+    function search() {
 
     }
 

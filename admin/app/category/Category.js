@@ -216,10 +216,10 @@
     function bulk() {
       logger.info(vm.bulkSelect);
       if (vm.bulkSelect === "delete") {
-        vm.list.forEach(function(Category) {
-          if (Category.isSelected) {
-            console.log(Category);
-            deleteCategory(Category);
+        vm.list.forEach(function(category) {
+          if (category.isSelected) {
+            console.log(category);
+            deleteCategory(category);
           }
         });
       }

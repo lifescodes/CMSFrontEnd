@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-    .module('app.rest')
-    .factory('TagService', TagService);
+  .module('app.rest')
+  .factory('TagService', TagService);
 
   TagService.$inject = ['BlogRest', 'exception', 'logger'];
 
@@ -12,17 +12,18 @@
     var vm = this;
     vm.list = [];
     var service = {
-      list: getListTag,
-      get: getTag,
-      search: searchTag,
-      save: saveTag,
-      update: updateTag,
-      delete: deleteTag
+      list: list,
+      get: get,
+      filter: filter,
+      save: save,
+      update: update,
+      remove: remove,
+      search: search
     };
 
     return service;
 
-    function getListTag(num, limit) {
+    function list(num, limit) {
       if (num === undefined) {
         return BlogRest.all('tag').getList();
       } else {
@@ -33,15 +34,19 @@
       }
     }
 
-    function getTag(id) {
+    function filter(object){
+      return BlogRest.all('tag').customGETLIST('filter',object);
+    }
+
+    function get(id) {
       return BlogRest.one('tag', id).get();
     }
 
-    function saveTag(data) {
+    function save(data) {
       return BlogRest.all('tag').post(data);
     }
 
-    function updateTag(id, tagedit) {
+    function update(id, tagedit) {
       var ps = BlogRest.one('tag', id).get();
       ps.then(
         function(data) {
@@ -49,10 +54,8 @@
           tagdata.id = id;
           tagdata.name = tagedit.name;
           tagdata.descriptions = tagedit.descriptions;
-          // tagdata.counter = tagedit.counter;
-          // tagdata.modified = tagedit.modified;
+          tagdata.counter = tagedit.counter;
           tagdata.put();
-          console.log(tagdata);
         },
         function(response) {
           console.log("Error with status code", response.status);
@@ -62,7 +65,7 @@
       return ps;
     }
 
-    function deleteTag(id) {
+    function remove(id) {
       var tg = BlogRest.one('tag', id).get();
       tg.then(
         function(tag) {
@@ -76,7 +79,7 @@
       return tg;
     }
 
-    function searchTag() {
+    function search() {
 
     }
 

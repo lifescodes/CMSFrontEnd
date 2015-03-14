@@ -17,25 +17,25 @@
       url: '/blog/post',
       config: {
         templateUrl: 'app/post/view/post.html',
-        controller: 'Post',
+        controller: 'PostList',
         controllerAs: 'vm',
-        title: 'post'
+        title: 'Post List'
       }
     }, {
       url: '/blog/post/add',
       config: {
-        templateUrl: 'app/post/view/postadd.html',
-        controller: 'Post',
+        templateUrl: 'app/post/view/postform.html',
+        controller: 'PostForm',
         controllerAs: 'vm',
-        title: 'post'
+        title: 'Post Add'
       }
     }, {
       url: '/blog/post/edit',
       config: {
-        templateUrl: 'app/post/view/postadd.html',
-        controller: 'Post',
+        templateUrl: 'app/post/view/postform.html',
+        controller: 'PostForm',
         controllerAs: 'vm',
-        title: 'post'
+        title: 'Post Edit'
       }
     }, ];
   }

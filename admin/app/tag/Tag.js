@@ -10,13 +10,17 @@
   function Tag(TagService, logger) {
     /*jshint validthis: true */
     var vm = this;
-    vm.list = listTag;
-    vm.get = getTag;
-    vm.save = saveTag;
-    vm.edit = editTag;
-    // vm.update = updateTag;
-    vm.delete = deleteTag;
-    vm.search = searchTag;
+    vm.list = list;
+    vm.get = get;
+    vm.saveOrUpdate = saveOrUpdate;
+    vm.save = save;
+    vm.edit = edit;
+    vm.update = update;
+    vm.remove = remove;
+    vm.search = search;
+
+    vm.listdata = [];
+    vm.tag = {};
 
     vm.bulk = bulk;
     vm.bulkSelect = "action";
@@ -34,30 +38,25 @@
     activate();
 
     function activate() {
-      listTag(1);
-
+      list(1);
     }
 
     function changePage(pos) {
       vm.page.current = pos;
-      // vm.list = null;
-      listTag(pos);
+      list(pos);
     }
-
 
     function nextPage() {
       if (vm.page.current < vm.page.total) {
         vm.page.current = vm.page.current + 1;
-        // vm.list = null;
-        listTag(vm.page.current);
+        list(vm.page.current);
       }
     }
 
     function prevPage() {
       if (vm.page.current > 1) {
         vm.page.current = vm.page.current - 1;
-        // vm.list = null;
-        listTag(vm.page.current);
+        list(vm.page.current);
       }
     }
 
@@ -66,40 +65,39 @@
       vm.page.totalArray = new Array(vm.page.total);
     }
 
-
-    function listTag(pos) {
-      var ls = TagService.list();
-      if (pos !== undefined) {
-        ls = TagService.list(pos, vm.page.limit);
-        vm.page.current = pos;
+    function list(current) {
+      var ts = TagService.list();
+      if (current !== undefined) {
+        ts = TagService.list(current, vm.page.limit);
+        vm.page.current = current;
       }
 
-      ls.then(
+      ts.then(
         function(response) {
-          vm.list = response;
-          countPage(vm.list.meta.count); // pagination
+          vm.listdata = response;
+          countPage(vm.listdata.meta.count); // pagination
         },
-        function(error) {
-          console.log(error);
+        function(response) {
+          console.log("Error with status code", response.status);
         }
       );
       return vm.list;
     }
 
 
-    function getTag(id) {
+    function get(id) {
       TagService.get(id).then(
-        function(data) {
-          return data;
+        function(response) {
+          vm.tag = response;
         },
-        function(error) {
-          console.log(error);
-          return error;
+        function(response) {
+          console.log("Error with status code", response.status);
         }
       );
+
     }
 
-    function saveTag() {
+    function saveOrUpdate() {
       if (vm.tag.id === undefined) {
         save();
         changePage(vm.page.total);
@@ -114,9 +112,9 @@
       stag.then(
         function(data) {
           var object = angular.copy(data);
-          vm.list.push(object);
+          vm.listdata.push(object);
           vm.tag = null;
-          countPage(vm.list.meta.count); //pagination
+          countPage(vm.listdata.meta.count); //pagination
           logger.success('Tag Saved Success!');
         },
         function(response) {
@@ -131,8 +129,8 @@
       utag.then(
         function(data) {
           var object = angular.copy(data);
-          console.log('update ', object);
           vm.tag = null;
+          console.log('Tag.update ', object);
           logger.success('Tag Updated Success!');
         },
         function(response) {
@@ -141,20 +139,21 @@
       );
     }
 
-    function editTag(tag) {
+    function edit(tag) {
       vm.tag = tag;
       console.log(tag);
     }
 
-    function deleteTag(tag) {
+    function remove(tag) {
       //remove from table in view
-      var index = vm.list.indexOf(tag);
-      if (index > -1) vm.list.splice(index, 1);
+      var index = vm.listdata.indexOf(tag);
+      if (index > -1) vm.listdata.splice(index, 1);
       //remove from rest service
-      var tagsv = TagService.delete(tag.id);
+      var tagsv = TagService.remove(tag.id);
       tagsv.then(
         function(response) {
-          console.log('delete => ', response);
+          console.log('Tag.delete ', response);
+          logger.info('Tag Deleted Success!');
         },
         function(response) {
           console.log("Error with status code", response.status);
@@ -165,7 +164,7 @@
     function bulk() {
       logger.info(vm.bulkSelect);
       if (vm.bulkSelect === "delete") {
-        vm.list.forEach(function(tag) {
+        vm.listdata.forEach(function(tag) {
           if (tag.isSelected) {
             console.log(tag);
             deleteTag(tag);
@@ -175,7 +174,7 @@
 
     }
 
-    function searchTag(keyword) {
+    function search(keyword) {
 
     }
 

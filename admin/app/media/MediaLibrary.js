@@ -5,19 +5,19 @@
   .module('app.media')
   .controller('MediaLibrary', MediaLibrary);
 
-  MediaLibrary.$inject = ['MediaFileService', 'ngDialog','logger','restconfig','$scope'];
+  MediaLibrary.$inject = ['MediaFileService','MediaCountHelper', 'ngDialog','logger','restconfig','$scope'];
 
-  function MediaLibrary(MediaFileService, ngDialog, logger, restconfig, $scope) {
+  function MediaLibrary(MediaFileService, MediaCountHelper, ngDialog, logger, restconfig, $scope) {
     /*jshint validthis: true */
     var vm = this;
-    vm.list = listMedia;
-    vm.get = getMedia;
+    vm.list = list;
+    vm.get = get;
     vm.detail = detail;
-    vm.edit = editMedia;
-    vm.update = updateMedia;
-    vm.delete = deleteMedia;
-    vm.search = searchMedia;
-    vm.countMediaType = countMediaType;
+    vm.edit = edit;
+    vm.update = update;
+    vm.remove = remove;
+    vm.search = search;
+    // vm.countType = countType;
 
 
     vm.listdata = [];
@@ -39,7 +39,7 @@
       totalArray: [],
     };
 
-    vm.countType = {
+    vm.count = {
       all:0,
       image:0,
       audio:0,
@@ -47,60 +47,21 @@
       other:0
     };
 
-    vm.mediaType = countMediaType;
+
 
     activate();
 
     function activate() {
-      listMedia(1);
+      list(1);
       vm.siteUrl = restconfig.siteUrl;
-      countMediaType();
-      console.log(vm.countType);
-
+      doCounting();
     }
 
-    function countMediaType(){
-      var msAll = MediaFileService.list(1,1000);
-      msAll.then(
-        function(response){
-          vm.countType.all = response.meta.count;
-        }
-      );
-
-      var image = {file_type:'image',page_limit: 1000};
-      var msImage = MediaFileService.listFilter(image);
-      msImage.then(
-        function(response){
-          vm.countType.image = response.meta.count;
-        }
-      );
-
-      var audio = {file_type:'audio',page_limit: 1000};
-      var msAudio = MediaFileService.listFilter(audio);
-      msAudio.then(
-        function(response){
-          vm.countType.audio = response.meta.count;
-        }
-      );
-
-      var video = {file_type:'video',page_limit: 1000};
-      var msVideo = MediaFileService.listFilter(video);
-      msVideo.then(
-        function(response){
-          vm.countType.video = response.meta.count;
-        }
-      );
-
-      var other = {file_type:'other',page_limit: 1000};
-      var msOther = MediaFileService.listFilter(other);
-      msOther.then(
-        function(response){
-          vm.countType.other = response.meta.count;
-        }
-      );
+    function doCounting(){
+      var limit = 1000;
+      var helper = MediaCountHelper;
+      vm.count = helper.count(limit);
     }
-
-
 
 
     function changePage(pos) {
@@ -132,7 +93,7 @@
     }
 
 
-    function listMedia(pos) {
+    function list(pos) {
       var ls = MediaFileService.list();
       if (pos !== undefined) {
         ls = MediaFileService.list(pos, vm.page.limit);
@@ -152,7 +113,7 @@
     }
 
 
-    function getMedia(id) {
+    function get(id) {
       MediaFileService.get(id).then(
         function(response) {
           vm.media = response;
@@ -178,7 +139,7 @@
     }
 
 
-    function updateMedia() {
+    function update() {
       var cmedia = angular.copy(vm.media);
       var umedia = MediaFileService.update(vm.media.id, cmedia);
       umedia.then(
@@ -195,17 +156,17 @@
       vm.dialog.close();
     }
 
-    function editMedia(media) {
+    function edit(media) {
       vm.media = media;
       console.log(media);
     }
 
-    function deleteMedia(media) {
+    function remove(media) {
       //remove from table in view
       var index = vm.listdata.indexOf(media);
       if (index > -1) vm.listdata.splice(index, 1);
       //remove from rest service
-      var mediasv = MediaFileService.delete(media.id);
+      var mediasv = MediaFileService.remove(media.id);
       mediasv.then(
         function(response) {
           console.log('delete => ', response);
@@ -231,7 +192,7 @@
       }
     }
 
-    function searchMedia(keyword) {
+    function search(keyword) {
 
     }
   }

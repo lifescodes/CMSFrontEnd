@@ -8,10 +8,6 @@
     </div>
   </dr-box-header>
   <dr-box-body display="{{box.styleBody}}">
-    <tags-input ng-model="tags"></tags-input>
-    <div class="" ng-repeat="tag in tags">
-      {{tag.text}}
-      <br>
-    </div>
+    <tags-input ng-model="vm.tag"></tags-input>
   </dr-box-body>
 </div>

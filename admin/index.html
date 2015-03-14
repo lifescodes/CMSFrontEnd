@@ -152,7 +152,9 @@ data-ng-controller="TopNav as vm" >
 <script src="app/rest/factory/UserRest.js"></script>
 <script src="app/rest/factory/MediaRest.js"></script>
 <script src="app/rest/service/PostService.js"></script>
+<script src="app/rest/service/PostCategoryService.js"></script>
 <script src="app/rest/service/CategoryService.js"></script>
+<script src="app/rest/service/PostTagService.js"></script>
 <script src="app/rest/service/TagService.js"></script>
 <script src="app/rest/service/MediaFileService.js"></script>
 
@@ -172,7 +174,13 @@ data-ng-controller="TopNav as vm" >
 <!-- post -->
 <script src="app/post/post.module.js"></script>
 <script src="app/post/config.route.js"></script>
-<script src="app/post/Post.js"></script>
+<script src="app/post/PostList.js"></script>
+<script src="app/post/PostForm.js"></script>
+<script src="app/post/PostCountHelper.js"></script>
+<script src="app/post/PostTagHelper.js"></script>
+<script src="app/post/PostCategoryHelper.js"></script>
+<script src="app/post/PostGetService.js"></script>
+
 
 <!-- tag -->
 <script src="app/tag/tag.module.js"></script>
@@ -188,8 +196,8 @@ data-ng-controller="TopNav as vm" >
 <script src="app/media/config.route.js"></script>
 <script src="app/media/MediaUpload.js"></script>
 <script src="app/media/MediaLibrary.js"></script>
+<script src="app/media/MediaCountHelper.js"></script>
 <script src="app/media/VideoPlayer.js"></script>
-
 <script src="app/media/ngThumb.js"></script>
 
 

@@ -25,7 +25,6 @@
   <!-- content view -->
   <div class="row">
     <div class="col-md-12">
-
       <div class="row">
         <div class="col-sm-12 col-md-12">
           <div class="box box-solid">
@@ -33,11 +32,11 @@
               <div class="row">
                 <div class="col-sm-2">
                   <select class="form-control col-sm-4">
-                    <option>All({{vm.countType.all}})</option>
-                    <option>Images({{vm.countType.image}})</option>
-                    <option>Audio({{vm.countType.audio}})</option>
-                    <option>Video({{vm.countType.video}})</option>
-                    <option>Other({{vm.countType.other}})</option>
+                    <option>All({{vm.count.all}})</option>
+                    <option>Images({{vm.count.image}})</option>
+                    <option>Audio({{vm.count.audio}})</option>
+                    <option>Video({{vm.count.video}})</option>
+                    <option>Other({{vm.count.other}})</option>
                   </select>
                 </div>
                 <div class="col-sm-2">
@@ -61,28 +60,26 @@
         </div>
 
         <div ng-hide="vm.listdata.length == 0">
-        <masonry class="col-sm-12" ng-show="vm.listdata.length > 0">
-          <div class="masonry-brick" ng-repeat="item in vm.listdata">
-            <div class="thumbnail" style="width: 170px; border-radius:1.6px;">
-              <a data-ng-click="vm.detail(item)" style="cursor: pointer;">
-                <img ng-src="{{vm.siteUrl+'/'+item.thumb_url+item.thumb_file}}" style="width:160px;">
-                <div ng-if="item.file_type!='image'">
-                  <div class="media-caption">{{item.name}}</div>
-                </div>
-              </a>
+          <masonry class="col-sm-12" ng-show="vm.listdata.length > 0">
+            <div class="masonry-brick" ng-repeat="item in vm.listdata">
+              <div class="thumbnail" style="width: 170px; border-radius:1.6px;">
+                <a data-ng-click="vm.detail(item)" style="cursor: pointer;">
+                  <img ng-src="{{vm.siteUrl+'/'+item.thumb_url+item.thumb_file}}" style="width:160px;">
+                  <div ng-if="item.file_type!='image'">
+                    <div class="media-caption">{{item.name}}</div>
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-        </masonry>
-      </div>
+          </masonry>
+        </div>
 
         <div class="col-sm-12" ng-show="vm.listdata.length == 0">
           <div class="callout callout-info">
-
             <h4>Media File Empty</h4>
             <p>
               Sorry, there are no image, video, audio or other data that has been uploaded.<br/>
               Please Upload media file from <a href="#/media/upload">Add New</a> left Side bar menu.<br/>
-
             </p>
           </div>
         </div>

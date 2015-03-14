@@ -10,10 +10,12 @@
       <th>Author</th>
       <th>Category</th>
       <th>Tags</th>
-      <th>Comment</th>
+      <th style="text-align:center;">
+        <span class="fa fa-comments"></span>
+      </th>
       <th>Date</th>
-      <th>Status</th>
-      <th>Action</th>
+      <th style="text-align:center;">Status</th>
+      <th style="text-align:center;">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -25,19 +27,37 @@
       </th>
       <td>{{ps.title}}</td>
       <td>{{ps.user}}</td>
-      <td>{{ps.category}}</td>
-      <td>{{ps.tag}}</td>
-      <td>{{ps.comment}}</td>
       <td>
-        {{ps.created || date}}
+          <div ng-show="ps.category.length">
+            <span ng-repeat="cat in ps.category">{{cat.name}}, </span>
+          </div>
+          <div ng-show="!ps.category.length">
+            <span>—</span>
+          </div>
       </td>
-      <td>{{ps.status}}</td>
+      <td style="text-align:center;">
+        <div ng-show="ps.tag.length">
+          <span ng-repeat="tag in ps.tag">{{tag.name}}, </span>
+        </div>
+        <div ng-show="!ps.tag.length">
+          <span>—</span>
+        </div>
+      </td>
+      <td style="text-align:center;">{{ps.comment.length}}</td>
       <td>
+        {{ps.created | date:'medium':'+8'}}
+      </td>
+      <td style="text-align:center;">
+          <span ng-show="ps.status == 0 ">Draft</span>
+          <span ng-show="ps.status != 0 ">Published</span>
+
+      </td>
+      <td style="text-align:center;">
         <div class="btn-group btn-group-sm">
           <button class="btn btn-warning" data-ng-click="vm.edit(ps)">
             <i class="fa fa-edit"></i>
           </button>
-          <button class="btn btn-danger" data-ng-click="vm.delete(ps)">
+          <button class="btn btn-danger" data-ng-click="vm.remove(ps)">
             <i class="fa fa-trash-o"></i>
           </button>
         </div>

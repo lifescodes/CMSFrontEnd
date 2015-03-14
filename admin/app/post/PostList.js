@@ -3,37 +3,43 @@
 
   angular
   .module('app.post')
-  .controller('Post', Post);
+  .controller('PostList', PostList);
 
-  Post.$inject = ['PostService', 'CategoryService', 'TagService', 'logger'];
+  PostList.$inject = [
+    'PostService','CategoryService','TagService',
+    'PostCountHelper','PostGetService','logger','$location'
+  ];
 
-  function Post(PostService, CategoryService, TagService, logger) {
+  function PostList(
+    PostService, CategoryService, TagService,
+    PostCountHelper, PostGetService, logger, $location
+  ) {
     /*jshint validthis: true */
     var vm = this;
-    vm.list = listPost;
-    vm.get = getPost;
-    vm.save = savePost;
-    vm.edit = editPost;
-    vm.update = updatePost;
-    vm.delete = deletePost;
-    vm.search = searchPost;
 
-    vm.bulk = bulk;
-    vm.bulkSelect = "action";
-    vm.bulkCheck = false;
-    vm.bulkCheckClick = bulkCheckClick;
+    /**
+    * Register Method
+    */
+    vm.list = list;
+    vm.get = get;
+    vm.edit = edit;
+    vm.remove = remove;
+    vm.search = search;
 
-    vm.listCategory = listCategory;
-    vm.listTag = listTag;
+    vm.shared = PostGetService;
 
-    //for list
+    /**
+    * create storage for list object
+    */
     vm.listdata = {
       post : [],
       category : [],
       tag : []
     };
 
-    //for view model (ng-model)
+    /**
+    * create model for view
+    */
     vm.tag = null;
     vm.category = null;
     vm.post = null;
@@ -49,36 +55,37 @@
       totalArray: [],
     };
 
+    /**
+    * runnner
+    */
     activate();
-
     function activate() {
-      logger.info('Post View Activated');
-      listPost(1);
-      listCategory(1);
-      listTag(1);
+      list(1);
+      doCount();
+    }
 
-      console.log(vm.listdata);
+    function doCount(){
+      var limit = 1000;
+      var helper = PostCountHelper;
+      vm.count = helper.count(limit);
     }
 
     function changePage(pos) {
       vm.page.current = pos;
-      // vm.list = null;
-      listPost(pos);
+      list(pos);
     }
 
     function nextPage() {
       if (vm.page.current < vm.page.total) {
         vm.page.current = vm.page.current + 1;
-        // vm.list = null;
-        listPost(vm.page.current);
+        this.list(vm.page.current);
       }
     }
 
     function prevPage() {
       if (vm.page.current > 1) {
         vm.page.current = vm.page.current - 1;
-        // vm.list = null;
-        listPost(vm.page.current);
+        list(vm.page.current);
       }
     }
 
@@ -88,7 +95,7 @@
     }
 
 
-    function listPost(current) {
+    function list(current) {
       var ps = PostService.list();
       if (current !== undefined) {
         ps = PostService.list(current, vm.page.limit);
@@ -107,41 +114,10 @@
       return vm.listdata.post;
     }
 
-    function getPost(id) {
+    function get(id) {
       PostService.get(id).then(
-        function(data) {
-          return data;
-        },
-        function(error) {
-          console.log(error);
-          return error;
-        }
-      );
-    }
-
-    function savePost() {
-
-    }
-
-    function editPost(post) {
-      vm.post = post;
-      console.log(post);
-    }
-
-    function updatePost() {
-
-    }
-
-
-    function deletePost(post) {
-      //remove from table in view
-      var index = vm.listdata.post.indexOf(post);
-      if (index > -1) vm.listdata.post.splice(index, 1);
-      //remove from rest service
-      var ps = PostService.delete(post.id);
-      ps.then(
         function(response) {
-          console.log('delete => ', response);
+          vm.post = response;
         },
         function(response) {
           console.log("Error with status code", response.status);
@@ -149,17 +125,51 @@
       );
     }
 
-    function searchPost(){
+
+
+    function edit(post) {
+      $location.path("blog/post/edit");
+      vm.post = post;
+      get(post.id);
+      console.log(post);
 
     }
 
+
+    function remove(post) {
+      //remove from table in view
+      var index = vm.listdata.post.indexOf(post);
+      if (index > -1) vm.listdata.post.splice(index, 1);
+
+      //remove from rest service
+      var ps = PostService.remove(post.id);
+      ps.then(
+        function(response) {
+          console.log('remove => ', response);
+        },
+        function(response) {
+          console.log("Error with status code", response.status);
+        }
+      );
+    }
+
+
+    function search(){
+
+    }
+
+
+    vm.bulk = bulk;
+    vm.bulkSelect = "action";
+    vm.bulkCheck = false;
+    vm.bulkCheckClick = bulkCheckClick;
 
     function bulk() {
       console.log('bulkSelect=>',vm.bulkSelect);
       if (vm.bulkSelect === "delete") {
         vm.listdata.post.forEach(function(post) {
           if (post.isSelected) {
-            deletePost(post);
+            remove(post);
             console.log('Post Selected =>',post);
           }
         });
@@ -172,35 +182,13 @@
       });
     }
 
-    function listCategory() {
-      var currentPage = 1;
-      var limit = 100;
-      var cs = CategoryService.tree(currentPage, limit);
-      cs.then(
-        function(response){
-          vm.listdata.category = response;
-        },
-        function(response) {
-          console.log("Error with status code", response.status);
-        }
-      );
 
-      return cs;
-    }
 
-    function listTag() {
-      var ts = TagService.list();
-      ts.then(
-        function(response){
-          vm.listdata.tag = response;
-        },
-        function(response) {
-          console.log("Error with status code", response.status);
-        }
-      );
 
-      return ts;
-    }
+
+
+
+
 
   }
 })();

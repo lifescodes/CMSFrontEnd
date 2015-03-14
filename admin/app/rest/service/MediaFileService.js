@@ -12,18 +12,18 @@
     var vm = this;
     vm.list = [];
     var service = {
-      list: getListMedia,
-      listFilter: getListFilter,
-      get: getMedia,
-      search: searchMedia,
-      save: saveMedia,
-      update: updateMedia,
-      delete: deleteMedia
+      list: list,
+      filter: filter,
+      get: get,
+      search: search,
+      save: save,
+      update: update,
+      remove: remove
     };
 
     return service;
 
-    function getListMedia(num, limit) {
+    function list(num, limit) {
       if (num === undefined) {
         return MediaRest.all('file').getList();
       } else {
@@ -34,19 +34,19 @@
       }
     }
 
-    function getListFilter(object){
+    function filter(object){
       return MediaRest.all('file').customGETLIST('filter',object);
     }
 
-    function getMedia(id) {
+    function get(id) {
       return MediaRest.one('file', id).get();
     }
 
-    function saveMedia(data) {
+    function save(data) {
       return MediaRest.all('file').post(data);
     }
 
-    function updateMedia(id, mediaedit) {
+    function update(id, mediaedit) {
       var ps = MediaRest.one('file', id).get();
       ps.then(
         function(data) {
@@ -65,7 +65,7 @@
       return ps;
     }
 
-    function deleteMedia(id) {
+    function remove(id) {
       var tg = MediaRest.one('file', id).get();
       tg.then(
         function(media) {
@@ -79,7 +79,7 @@
       return tg;
     }
 
-    function searchMedia() {
+    function search() {
 
     }
 
