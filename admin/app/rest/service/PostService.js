@@ -23,9 +23,9 @@
     /* begin function */
     function list(num, limit) {
       if (num === undefined) {
-        return BlogRest.all('post/list').getList();
+        return BlogRest.all('postrelated').getList();
       } else {
-        return BlogRest.all('post/list').customGETLIST('', {
+        return BlogRest.all('postrelated').customGETLIST('', {
           page_limit: limit,
           page: num
         });
@@ -37,7 +37,7 @@
     }
 
     function get(id) {
-      return BlogRest.one('post', id).get();
+      return BlogRest.one('postrelated', id).get();
     }
 
 
@@ -45,18 +45,18 @@
       return BlogRest.all('post').post(data);
     }
 
-    function update(id, postedit) {
+    function update(id, edit) {
       var ps = BlogRest.one('post', id).get();
       ps.then(
         function(data) {
           var postdata = BlogRest.copy(data);
-          postdata.title = postedit.title;
-          postdata.slug = postedit.slug;
-          postdata.content = postedit.content;
-          postdata.status = postedit.status;
-          postdata.modified = postedit.modified;
-          postdata.save();
-          console.log(postdata);
+          postdata.title = edit.title;
+          postdata.slug = edit.slug;
+          postdata.content = edit.content;
+          postdata.status = edit.status;
+          postdata.modified = edit.modified;
+          postdata.put();
+          console.log('PostService.update ',postdata);
         },
         function(response) {
           console.log("Error with status code", response.status);
@@ -71,6 +71,7 @@
       ps.then(
         function(post) {
           post.remove();
+          console.log('PostService.remove',post);
         },
         function(response) {
           console.log("Error with status code", response.status);

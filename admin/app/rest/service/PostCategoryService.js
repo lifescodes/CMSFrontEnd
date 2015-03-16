@@ -54,7 +54,8 @@
           postcat.content = edit.content;
           postcat.status = edit.status;
           postcat.modified = edit.modified;
-          postcat.save();
+          postcat.put();
+          console.log('PostCategoryService.update',postcat);
         },
         function(response) {
           console.log("Error with status code", response.status);
@@ -66,9 +67,10 @@
 
     function remove(id) {
       var pc = BlogRest.one('postcategory', id).get();
-      ps.then(
+      pc.then(
         function(response) {
           response.remove();
+          console.log('PostCategoryService.remove',response);
         },
         function(response) {
           console.log("Error with status code", response.status);

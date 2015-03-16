@@ -1,4 +1,4 @@
-<div ng-hide="vm.listdata.post.length == 0">
+<div ng-hide="vm.paginator.data().length == 0">
   <div class="no-margin pull-left">
     <form name="bulkForm" class="form-inline" novalidate>
 
@@ -14,17 +14,21 @@
       </div>
     </form>
   </div>
+
   <!-- pagination -->
   <ul class="pagination no-margin pull-right inline">
     <li>
-      <a data-ng-click="vm.prevPage()" style="cursor:pointer">«</a>
+      <a data-ng-click="vm.paginator.prev()" style="cursor:pointer">«</a>
     </li>
-    <li ng-repeat="i in vm.page.totalArray track by $index" data-ng-class="{'active': vm.page.current === ($index+1)}" style="cursor:pointer">
-      <a data-ng-click="vm.changePage($index+1)">{{$index+1}}</a>
+    <li ng-repeat="i in vm.paginator.total() track by $index"
+        data-ng-class="{'active': vm.paginator.current() === ($index+1)}"
+        style="cursor:pointer">
+      <a data-ng-click="vm.paginator.page($index+1)">{{$index+1}}</a>
     </li>
     <li>
-      <a data-ng-click="vm.nextPage()" style="cursor:pointer">»</a>
+      <a data-ng-click="vm.paginator.next()" style="cursor:pointer">»</a>
     </li>
   </ul>
+  <!-- end pagination -->
   <div class="clearfix" style="margin-bottom:10px;"></div>
 </div>

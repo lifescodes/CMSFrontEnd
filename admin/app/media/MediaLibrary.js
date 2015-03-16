@@ -19,7 +19,6 @@
     vm.search = search;
     // vm.countType = countType;
 
-
     vm.listdata = [];
     vm.data = {};
     vm.media = {};
@@ -46,7 +45,6 @@
       video:0,
       other:0
     };
-
 
 
     activate();

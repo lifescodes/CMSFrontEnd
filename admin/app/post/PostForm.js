@@ -8,18 +8,20 @@
   PostForm.$inject = [
     'PostService', 'CategoryService', 'TagService',
     'PostTagHelper','PostCategoryHelper','PostGetService',
-    'logger','$location'
+    'URLHelper','logger', '$scope','restconfig'
   ];
 
   function PostForm(
     PostService, CategoryService, TagService,
     PostTagHelper, PostCategoryHelper, PostGetService,
-    logger, $location
+    URLHelper, logger, $scope, restconfig
   ){
     /*jshint validthis: true */
     var vm = this;
     vm.save = save;
+    vm.publish = publish;
     vm.update = update;
+
     vm.listCat = listCat;
     vm.listTag = listTag;
 
@@ -28,9 +30,10 @@
       tag: []
     };
 
+    vm.service = PostGetService;
     vm.post = null;
-    vm.tag = null;
-    vm.category = null;
+    vm.tags = null;
+    vm.categories = null;
 
     vm.shared = PostGetService;
 
@@ -39,6 +42,26 @@
     vm.selectCategory = selectCategory;
 
 
+    $scope.ckeditorConfig = {
+      lang: 'en',
+      // simpleImageBrowserUrl: restconfig.siteUrl+'/v1/media/file/url',
+      toolbar_full: [
+        { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', 'Underline' ] },
+        { name: 'paragraph', items: [ 'BulletedList', 'NumberedList', 'Blockquote' ] },
+        { name: 'editing', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+        { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+        { name: 'tools', items: [ 'SpellChecker', 'Maximize' ] },
+        '/',
+        { name: 'styles', items: [ 'Format', 'FontSize', 'TextColor', 'PasteText', 'PasteFromWord', 'RemoveFormat' ] },
+        { name: 'insert', items: [ 'Image', 'Table', 'SpecialChar' ] },
+        { name: 'forms', items: [ 'Outdent', 'Indent' ] },
+        { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+        //Adds PBCKCode button to CKeditor panel
+        { name: 'document', items: [ 'PageBreak', 'Source' ] },
+      ],
+      extraPlugins: 'imagebrowser',
+      "imageBrowser_listUrl" : restconfig.siteUrl + '/v1/media/file/url?format=json',
+    };
     /**
     * runnner
     */
@@ -46,7 +69,43 @@
     function activate() {
       listCat();
       listTag();
+      if (URLHelper.segment(3)=="edit"){
+        initEdit();
+      } else {
+        vm.checkCategory[1]=true;
+      }
     }
+
+    function initEdit(){
+      var id = URLHelper.getSegment().last();
+      PostService.get(id).then(
+        function(response){
+          vm.post = response;
+          initCategoryWidget(vm.post.category);
+          initTagWidget(vm.post.tag);
+        },
+        function(response){
+          console.log("Error with status code", response.status);
+        }
+      );
+    }
+
+    function initCategoryWidget(categories){
+      categories.forEach(function(cat){
+        vm.checkCategory[cat.id] = true;
+      });
+    }
+
+    function initTagWidget(tags){
+      var tagArray = [];
+      if (tags.length >0){
+        tags.forEach(function(value){
+          tagArray.push({id: value.id, text: value.name});
+        });
+      }
+      vm.tags = tagArray;
+    }
+
 
     function save() {
       vm.post.status = 0; //default for draft
@@ -58,9 +117,7 @@
           var post = angular.copy(response);
           vm.post = post;
 
-          // vm.listdata.post.push(post);
-
-          PostTagHelper.save(post, vm.tag);
+          PostTagHelper.save(post, vm.tags);
           PostCategoryHelper.save(post, vm.selectedCategory);
         },
         function(response){
@@ -69,8 +126,27 @@
       );
     }
 
-    function update(){
+    function update(status){
+      if (status === undefined){
+        status = 0;
+      }
+      vm.post.status = status;
+      vm.post.user = 3;
+      var cpost = angular.copy(vm.post);
+      var ps = PostService.update(cpost.id, cpost);
+      ps.then(
+        function(response){
+          var post = angular.copy(response);
+          // vm.post = response;
+          PostTagHelper.update(post, vm.tags);
+          PostCategoryHelper.update(post, vm.checkCategory);
+        },
+        function(response){
+          console.log("Error with status code", response.status);
+        }
+      );
 
+      console.log('PostForm.update',vm.checkCategory);
     }
 
     function selectCategory(id){
@@ -83,14 +159,9 @@
       console.log(vm.selectedCategory);
     }
 
-    vm.checkClick = checkClick;
-    function checkClick(){
-      console.log(vm.selectedCategory);
-    }
-
 
     function publish(){
-
+      update(1);
     }
 
 

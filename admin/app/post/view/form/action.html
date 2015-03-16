@@ -14,7 +14,9 @@
       </label>
       &nbsp;
       <label>Status : </label>
-      <label>Saved</label>
+      <label ng-show="vm.post.status == undefined">New</label>
+      <label ng-show="vm.post.status != 1">Draft</label>
+      <label ng-show="vm.post.status == 1">Published</label>
     </div>
 
     <div>
@@ -23,7 +25,7 @@
       </label>
       &nbsp;
       <label>Created : </label>
-      <label>Create</label>
+      <label>{{vm.post.created | date:'medium':+8}}</label>
     </div>
 
     <div>
@@ -32,16 +34,29 @@
       </label>
       &nbsp;
       <label>Modified : </label>
-      <label>Modify</label>
+      <label>{{vm.post.modified | date:'medium':+8}}</label>
     </div>
 
   </dr-box-body>
   <div class="box-footer text-center">
-    <button class="btn  btn-primary btn-flat" ng-click="vm.save()">
-      <i class="fa fa-edit"></i> Save
-    </button>
+    <span ng-show="vm.post.id == undefined">
+      <button class="btn  btn-primary btn-flat" ng-click="vm.save()">
+        <i class="fa fa-edit"></i> Save
+      </button>
+    </span>
+    <span ng-show="vm.post.status == 0">
+      <button class="btn  btn-primary btn-flat" ng-click="vm.update()">
+        <i class="fa fa-edit"></i> Save
+      </button>
+    </span>
+    <span ng-show="vm.post.status == 1">
+      <button class="btn btn-primary btn-flat" ng-click="vm.update(0)">
+        <i class="fa fa-edit"></i> Draft
+      </button>
+    </span>
 
-    <button class="btn  btn-info btn-flat">
+
+    <button class="btn  btn-info btn-flat" ng-click="vm.publish()">
       <i class="fa fa-globe"></i> Publish
     </button>
 

@@ -11,11 +11,15 @@
 
   function PostTagHelper(PostTagService, TagService, logger){
     /*jshint validthis: true */
-    var service = {
-      save: save
-    };
+    var vm = this;
+    // vm.list = {};
 
+    var service = {
+      save: save,
+      update: update
+    };
     return service;
+
 
 
     /**
@@ -27,22 +31,24 @@
     *         3.a.1. jika tidak maka relasikan dengan post tag pada tabel blog_post_tag
     */
     function save(post, tags){
-      tags.forEach(function(object){ //looping tiap tag
-        var tag = {name: object.text};
-        var ts = TagService.filter(tag); //check tag ke service database
-        ts.then(
-          function(response){
-            if (response.meta.count === 0){ //data tidak ada pada database
-              saveTag(post, tag);
-            } else { //data ada pada database
-              updateTag(post, response[0]); //update tag
+      if (tags.length > 0){
+        tags.forEach(function(object){ //looping tiap tag
+          var tag = {name: object.text};
+          var ts = TagService.filter(tag); //check tag ke service database
+          ts.then(
+            function(response){
+              if (response.meta.count === 0){ //data tidak ada pada database
+                saveTag(post, tag);
+              } else { //data ada pada database
+                updateTag(post, response[0]); //update tag
+              }
+            },
+            function(response){
+              console.log("Error with status code", response.status);
             }
-          },
-          function(response){
-            console.log("Error with status code", response.status);
-          }
-        );
-      });
+          );
+        });
+      }
     }
 
     function saveTag(post, tag){
@@ -70,6 +76,91 @@
           console.log("Error with status code", response.status);
         }
       );
+    }
+
+
+    function update(post, tags){
+      var filter = {post: post.id, page_limit: 1000};
+      var pts = PostTagService.filter(filter);
+      pts.then(
+        function(response){
+          vm.list = response;
+
+          //==================
+          var dbTag = [];
+          vm.list.forEach(function(tagObj){
+            dbTag.push(tagObj.tag);
+            // console.log(tagObj.tag);
+          });
+          var inTag = tagsArray(tags);
+          var diff = _.difference(dbTag, inTag);
+          //===================
+
+          // console.log('dbTag', dbTag);
+          // console.log('inTag', inTag);
+          // console.log('diff',diff);
+
+          //Remove Tag
+          //===========================
+          diff.forEach(function(delTag){
+            var filter = {tag: delTag};
+            var pts = PostTagService.filter(filter);
+            var pt = {};
+            pts.then(
+              function(response){
+                pt = response[0];
+                //remove
+                var rm = PostTagService.remove(pt.id);
+                rm.then(
+                  function(response){console.dir(response);},
+                  function(response){ console.log("Error", response.status);}
+                );
+              },
+              function(response){
+                console.log("Error with status code", response.status);
+              }
+            );
+          });
+          //==============================
+
+          //Save New Tag
+          //============================
+          tags.forEach(function(obj){
+            if (obj.id === undefined){
+              var tag = { name: obj.text };
+                saveTag(post, tag);
+            }
+          });
+          //==============================
+
+        },
+        function(response){
+          console.log("Error with status code", response.status);
+        }
+      );
+    }
+
+    function tagsArray(tags){
+      var ar = [];
+      tags.forEach(function(hb){ //looping tiap tag
+        ar.push(hb.id);
+      });
+      return ar;
+    }
+
+    function list(post){
+      var filter = {post: post.id, page_limit: 1000};
+      var pts = PostTagService.filter(filter);
+      pts.then(
+        function(response){
+          vm.list = response;
+          return response;
+        },
+        function(response){
+          console.log("Error with status code", response.status);
+        }
+      );
+      return pts;
     }
 
 

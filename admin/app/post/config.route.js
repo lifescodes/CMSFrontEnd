@@ -30,7 +30,7 @@
         title: 'Post Add'
       }
     }, {
-      url: '/blog/post/edit',
+      url: '/blog/post/edit/:id',
       config: {
         templateUrl: 'app/post/view/postform.html',
         controller: 'PostForm',

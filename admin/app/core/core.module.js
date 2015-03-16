@@ -15,6 +15,8 @@
     */
     'ngplus', 'restangular', 'ngCkeditor', 'ngTagsInput',
 
+    'slugifier', 
+
     'angularFileUpload',  'ui.grid', 'wu.masonry', 'ngDialog',
     /*
     *UI Bootstrap

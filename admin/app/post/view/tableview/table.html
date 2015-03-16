@@ -1,4 +1,4 @@
-<table ng-hide="vm.listdata.post.length == 0" class="table table-bordered table-hover">
+<table ng-hide="vm.paginator.data().length == 0" class="table table-bordered table-hover">
   <thead>
     <tr>
       <th style="text-align: center;">
@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="ps in vm.listdata.post track by ps.id">
+    <tr ng-repeat="ps in vm.paginator.data() track by ps.id">
       <th style="text-align: center;">
         <label>
           <input type="checkbox" name="child{{ps.id}}" value="{{ps.id}}" data-ng-checked="vm.bulkCheck" data-ng-model="ps.isSelected" />

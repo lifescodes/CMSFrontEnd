@@ -44,18 +44,15 @@
       return BlogRest.all('posttag').post(data);
     }
 
-    function update(id, posttagedit) {
+    function update(id, edit) {
       var ps = BlogRest.one('posttag', id).get();
       ps.then(
         function(data) {
-          var posttagdata = BlogRest.copy(data);
-          posttagdata.title = posttagedit.title;
-          posttagdata.slug = posttagedit.slug;
-          posttagdata.content = posttagedit.content;
-          posttagdata.status = posttagedit.status;
-          posttagdata.modified = posttagedit.modified;
-          posttagdata.save();
-          console.log(posttagdata);
+          var tagdata = BlogRest.copy(data);
+          tagdata.post = edit.post;
+          tagdata.tag = edit.tag;
+          tagdata.put();
+          console.log(tagdata);
         },
         function(response) {
           console.log("Error with status code", response.status);
@@ -68,8 +65,8 @@
     function remove(id) {
       var ps = BlogRest.one('posttag', id).get();
       ps.then(
-        function(PostTag) {
-          PostTag.remove();
+        function(posttag) {
+          posttag.remove();
         },
         function(response) {
           console.log("Error with status code", response.status);

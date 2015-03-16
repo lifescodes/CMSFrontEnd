@@ -8,12 +8,25 @@
     </div>
   </dr-box-header>
   <dr-box-body display="{{box.styleBody}}">
-    <input type="text" ng-model="vm.post.id" >
+    <input type="text" ng-model="vm.post.id" style="display:none;">
     <div class="form-group">
       <input type="text" class="form-control input-lg" placeholder="Your Post Title Here..." data-ng-model="vm.post.title">
+      <span class="help-block" ng-show="vm.post.title" style="padding-left:16px;">
+        Slug: {{vm.post.title | slugify}}
+        <input type="text" ng-model="vm.post.slug" value="{{vm.post.title | slugify}}"
+              style="display:none">
+      </span>
     </div>
     <div class="form-group">
-      <textarea ckeditor="editorOptions" data-ng-model="vm.post.content"></textarea>
+      <textarea ckeditor="ckeditorConfig" data-ng-model="vm.post.content" ></textarea>
+      <!-- <text-angular ng-model="vm.post.content"></text-angular>
+      <div text-angular ng-model="vm.post.content" name="demo-editor"
+          ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
+      <div text-angular ng-model="vm.post.content"></div> -->
     </div>
   </dr-box-body>
 </div>
+
+<script>
+CKEDITOR.config.simpleImageBrowserURL = 'http://api.lifecode.loc/v1/media/file/url';
+</script>

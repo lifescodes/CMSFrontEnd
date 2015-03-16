@@ -18,7 +18,7 @@
         <div class="box-body">
 
           <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/post/view/tableview/boxtoolup.html'"></div>
-          <div class="col-sm-12" ng-show="vm.listdata.post.length == 0">
+          <div class="col-sm-12" ng-show="vm.paginator.data().length == 0">
             <br/>
             <div class="callout callout-info">
               <h4>Post Empty</h4>
