@@ -1,0 +1,35 @@
+<header class="header" data-ng-include="'app/layout/view/topnav.html'">
+</header>
+
+<div ng-class="vm.wrapper" class="wrapper row-offcanvas row-offcanvas-left">
+
+  <aside data-ng-include="'app/layout/view/sidenav.html'"
+         data-ng-class="vm.left"
+         >
+  </aside>
+
+
+  <aside data-ng-class="vm.right" style="top:0; margin-top:50px;">
+         <section class="content-header">
+           <h1>
+             {{section.title}}
+             <small ng-show="section.small">{{section.small}}</small>
+           </h1>
+           <ol class="breadcrumb">
+             <li ng-repeat="item in breadcumb">
+               <a href="#"><i class="{{item.icon}}"></i> {{item.name}}</a>
+             </li>
+           </ol>
+         </section>
+
+         <section class="content animate" id="content" ng-view></section>
+
+         <!-- <div ngplus-overlay
+              ngplus-overlay-delay-in="50"
+              ngplus-overlay-delay-out="1000"
+              ngplus-overlay-animation="dissolve-animation">
+             <img src="content/img/loading/Twirl.gif"/>
+         </div> -->
+
+  </aside>
+</div>

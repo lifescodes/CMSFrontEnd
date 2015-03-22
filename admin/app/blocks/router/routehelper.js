@@ -52,7 +52,7 @@
         $routeProvider.when(route.url, route.config);
       });
       $routeProvider.otherwise({
-        redirectTo: '/'
+        redirectTo: '/dashboard'
       });
     }
 
@@ -101,6 +101,8 @@
           handlingRouteChangeError = false;
           var title = routehelperConfig.config.docTitle + ' ' + (current.title || '');
           $rootScope.title = title; // data bind to <title>
+          $rootScope.section = current.section;
+          $rootScope.breadcumb = current.breadcumb;
         }
       );
     }

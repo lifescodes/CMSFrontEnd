@@ -19,7 +19,16 @@
         templateUrl: 'app/post/view/post.html',
         controller: 'PostList',
         controllerAs: 'vm',
-        title: 'Post List'
+        title: 'Blog Post List',
+        section:{
+          title: 'Blog Post',
+          small: 'List View'
+        },
+        breadcumb: [
+          { name: "Blog", icon: "fa fa-dashboard" },
+          { name: "Post", icon: "fa fa-picture-o" },
+          { name: "List", icon: "fa fa-picture-o" }
+        ],
       }
     }, {
       url: '/blog/post/add',
@@ -27,7 +36,16 @@
         templateUrl: 'app/post/view/postform.html',
         controller: 'PostForm',
         controllerAs: 'vm',
-        title: 'Post Add'
+        title: 'Blog Post Add',
+        section:{
+          title: 'Blog Post',
+          small: 'Add View'
+        },
+        breadcumb: [
+          { name: "Blog", icon: "fa fa-dashboard" },
+          { name: "Post", icon: "fa fa-picture-o" },
+          { name: "Add", icon: "fa fa-picture-o" }
+        ],
       }
     }, {
       url: '/blog/post/edit/:id',
@@ -35,7 +53,16 @@
         templateUrl: 'app/post/view/postform.html',
         controller: 'PostForm',
         controllerAs: 'vm',
-        title: 'Post Edit'
+        title: 'Blog Post Edit',
+        section:{
+          title: 'Blog Post',
+          small: 'Add View'
+        },
+        breadcumb: [
+          { name: "Blog", icon: "fa fa-dashboard" },
+          { name: "Post", icon: "fa fa-picture-o" },
+          { name: "Edit", icon: "fa fa-picture-o" }
+        ],
       }
     }, ];
   }

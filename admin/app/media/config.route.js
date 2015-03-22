@@ -20,7 +20,15 @@
           templateUrl: 'app/media/view/upload.html',
           controller: 'MediaUpload',
           controllerAs: 'vm',
-          title: 'Media Upload'
+          title: 'Media Upload',
+          section:{
+            title: 'Media Upload',
+            small: 'View'
+          },
+          breadcumb: [
+            { name: "Media", icon: "fa fa-dashboard" },
+            { name: "Upload", icon: " fa-picture-o" }
+          ],
         }
       },
       {
@@ -29,7 +37,15 @@
           templateUrl: 'app/media/view/media.html',
           controller: 'MediaLibrary',
           controllerAs: 'vm',
-          title: 'Media Upload'
+          title: 'Media Upload',
+          section:{
+            title: 'Media Library',
+            small: 'View'
+          },
+          breadcumb: [
+            { name: "Media", icon: "fa fa-dashboard" },
+            { name: "Library", icon: " fa-picture-o" }
+          ],
         }
       }
     ];

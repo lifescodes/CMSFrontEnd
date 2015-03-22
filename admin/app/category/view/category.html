@@ -1,29 +1,15 @@
-<section class="content-header">
-  <h1>
-    Blog Category
-    <small>View</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Blog</a>
-    </li>
-    <li class="active">category</li>
-  </ol>
-</section>
-
-<section class="content" id="content" data-ng-controller="Category as vm">
-  <!-- content view -->
-  <div class="row">
-    <div class="col-xs-4" data-ng-include="'app/category/view/form.html'"></div>
-    <div class="col-xs-8">
-      <div class="box box-solid">
-        <div class="box-body">
-          <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/category/view/tableview/boxtoolup.html'"></div>
-          <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
-          <div class="box-tools" data-ng-include="'app/category/view/tableview/boxtooldown.html'"></div>
-          <div style="margin-bottom:9px;" data-ng-include="'app/category/view/tableview/table.html'"></div>
-          <div class="box-tools" data-ng-include="'app/category/view/tableview/boxtooldown.html'"></div>
-        </div><!-- end box-body -->
-      </div><!-- end box -->
-    </div><!-- end col-xs-8 -->
-  </div><!-- end row -->
-</section>
+<!-- content view -->
+<div class="row" data-ng-controller="Category as vm">
+  <div class="col-xs-4" data-ng-include="'app/category/view/form.html'"></div>
+  <div class="col-xs-8">
+    <div class="box box-solid">
+      <div class="box-body">
+        <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/category/view/tableview/boxtoolup.html'"></div>
+        <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
+        <div class="box-tools" data-ng-include="'app/category/view/tableview/boxtooldown.html'"></div>
+        <div style="margin-bottom:9px;" data-ng-include="'app/category/view/tableview/table.html'"></div>
+        <div class="box-tools" data-ng-include="'app/category/view/tableview/boxtooldown.html'"></div>
+      </div><!-- end box-body -->
+    </div><!-- end box -->
+  </div><!-- end col-xs-8 -->
+</div><!-- end row -->

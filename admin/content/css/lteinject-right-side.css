@@ -1,0 +1,10 @@
+
+.right-side {
+  margin-left: 200px;
+}
+
+
+.skin-blue .right-side > .content-header{
+  background: #fafafa;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}

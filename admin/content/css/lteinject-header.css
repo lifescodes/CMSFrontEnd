@@ -1,0 +1,10 @@
+body > .header .logo {
+  width: 200px;
+  text-align:left;
+  font-size: 21px;
+  padding-left: 10px;
+}
+
+body > .header .navbar{
+  margin-left: 200px;
+}

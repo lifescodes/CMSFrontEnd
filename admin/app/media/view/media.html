@@ -1,14 +1,3 @@
-<section class="content-header">
-  <h1>
-    Media Library
-    <small>View</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Media</a>
-    </li>
-    <li class="active">Library</li>
-  </ol>
-</section>
 
 <style media="screen">
 .masonry-brick {
@@ -47,8 +36,16 @@
                     <option>January 2015</option>
                   </select>
                 </div>
-                <div class="col-sm-1">
-                  <button name="button" class="btn btn-flat btn-default">Filter</button>
+                <div class="col-sm-3">
+                  <button name="button" class="btn btn-flat btn-default">
+                    <span class="fa fa-bars"></span>
+                    Filter
+                  </button>
+                  &nbsp;
+                  <button name="button" class="btn btn-flat btn-default" data-ng-click="vm.refresh()">
+                    <span class="fa fa-refresh"></span>
+                    Refresh
+                  </button>
                 </div>
                 <div class="pull-right col-sm-3">
                   <input type="text" class="form-control" placeholder="Search...">

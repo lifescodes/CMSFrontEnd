@@ -3,13 +3,13 @@
 
   var rest = angular.module('app.rest');
   var remoteconfig = {
-    site: 'http://api.lifecode.loc',
+    site: 'http://api.lifecode.dev',
     apiVersion : 'v1',
   };
   var restconfig = {
-    siteUrl: 'http://api.lifecode.loc',
+    siteUrl: 'http://api.lifecode.dev',
     apiVersion : 'v1',
-    baseUrl: 'http://api.lifecode.loc/v1/',
+    baseUrl: 'http://api.lifecode.dev/v1/',
     requestSuffix: '?format=json',
     defaultHeaders: {
       "Content-Type": "application/json",

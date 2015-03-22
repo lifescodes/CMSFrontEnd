@@ -19,7 +19,15 @@
         templateUrl: 'app/category/view/category.html',
         controller: 'Category',
         controllerAs: 'vm',
-        title: 'Category'
+        title: 'Category',
+        section:{
+          title: 'Blog Category',
+          small: 'View'
+        },
+        breadcumb: [
+          { name: "Blog", icon: "fa fa-dashboard" },
+          { name: "Category", icon: "fa fa-picture-o" },
+        ],
       }
     }];
   }

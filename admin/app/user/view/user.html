@@ -1,0 +1,39 @@
+<div class="row" data-ng-controller="User as vm">
+  <div class="col-xs-4" data-ng-include="'app/user/view/form.html'">
+    <head>
+      <title></title>
+    </head>
+    <body>
+
+    </body>
+  </html>'">
+  </div>
+
+  <div class="col-xs-8">
+    <div class="box box-solid">
+      <div class="box-body">
+        <div>
+          <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/user/view/tableview/boxtoolup.html'"></div>
+          <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
+          <div class="box-tools" data-ng-include="'app/user/view/tableview/boxtooldown.html'"></div>
+          <div style="margin-bottom:9px;" data-ng-include="'app/user/view/tableview/table.html'"></div>
+          <div class="box-tools" data-ng-include="'app/user/view/tableview/boxtooldown.html'"></div>
+        </div>
+        <div ng-show="vm.paginator.data().lenght == 0">
+          <br/>
+          <div class="callout callout-info">
+            <h4>Tag Empty</h4>
+            <p>
+              Sorry, there are no Tag that has been Added.<br/>
+              Please Add Tag from Form in the left side.<br/>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- end box-body -->
+    </div>
+    <!-- end box -->
+  </div>
+  <!-- end col-xs-12 -->
+</div>
+<!-- end row -->

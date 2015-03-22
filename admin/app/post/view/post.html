@@ -1,44 +1,31 @@
-<section class="content-header">
-  <h1>
-    Blog Post
-    <small>Post Table View</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Blog</a>
-    </li>
-    <li class="active">Post</li>
-  </ol>
-</section>
 
-<section class="content" id="content">
-  <!-- content view -->
-  <div class="row" data-ng-controller="PostList as vm">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-body">
+<!-- content view -->
+<div class="row" data-ng-controller="PostList as vm">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-body">
 
-          <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/post/view/tableview/boxtoolup.html'"></div>
-          <div class="col-sm-12" ng-show="vm.paginator.data().length == 0">
-            <br/>
-            <div class="callout callout-info">
-              <h4>Post Empty</h4>
-              <p>
-                Sorry, there are no post that has been write.<br/>
-                Please Add Post from Add New Button.<br/>
-              </p>
-            </div>
+        <div class="box-tools" style="color: white; margin-bottom:6px;" data-ng-include="'app/post/view/tableview/boxtoolup.html'"></div>
+        <div class="col-sm-12" ng-show="vm.paginator.data().length == 0">
+          <br/>
+          <div class="callout callout-info">
+            <h4>Post Empty</h4>
+            <p>
+              Sorry, there are no post that has been write.<br/>
+              Please Add Post from Add New Button.<br/>
+            </p>
           </div>
-          <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
-
-          <div class="box-tools" data-ng-include="'app/post/view/tableview/boxtooldown.html'"></div>
-          <div style="margin-bottom:9px;" data-ng-include="'app/post/view/tableview/table.html'"></div>
-          <div class="box-tools" data-ng-include="'app/post/view/tableview/boxtooldown.html'"></div>
         </div>
-        <!-- end box-body -->
+        <div class="clearfix" style="color: white; margin-bottom:9px;"></div>
+
+        <div class="box-tools" data-ng-include="'app/post/view/tableview/boxtooldown.html'"></div>
+        <div style="margin-bottom:9px;" data-ng-include="'app/post/view/tableview/table.html'"></div>
+        <div class="box-tools" data-ng-include="'app/post/view/tableview/boxtooldown.html'"></div>
       </div>
-      <!-- end box -->
+      <!-- end box-body -->
     </div>
-    <!-- end col-xs-12 -->
+    <!-- end box -->
   </div>
-  <!-- end row -->
-</section>
+  <!-- end col-xs-12 -->
+</div>
+<!-- end row -->

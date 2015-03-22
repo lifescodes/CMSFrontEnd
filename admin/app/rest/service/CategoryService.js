@@ -53,17 +53,16 @@
       return BlogRest.all('category').post(data);
     }
 
-    function update(id, catedit) {
+    function update(id, edit) {
       var ps = BlogRest.one('category', id).get();
       ps.then(
         function(data) {
-          var catdata = BlogRest.copy(data);
-          catdata.id = id;
-          catdata.name = catedit.name;
-          catdata.descriptions = catedit.descriptions;
-          catdata.counter = catedit.counter;
-          catdata.put();
-          console.log(catdata);
+          var cat = BlogRest.copy(data);
+          cat.id = id;
+          cat.name = edit.name;
+          cat.descriptions = edit.descriptions;
+          cat.counter = edit.counter;
+          cat.put();
         },
         function(response) {
           console.log("Error with status code", response.status);

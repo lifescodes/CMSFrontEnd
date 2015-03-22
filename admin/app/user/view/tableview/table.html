@@ -1,0 +1,52 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th style="text-align: center;">
+        <label>
+          <input type="checkbox" class="icheckbox_minimal" ng-model="master" />
+        </label>
+      </th>
+      <th>Display</th>
+      <th>Email</th>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in vm.paginator.data() track by user.id" class="animate-repeat" >
+      <th style="text-align: center;">
+        <label>
+          <input type="checkbox" name="child{{user.id}}" value="{{user.id}}" ng-checked="master" ng-model="user.isSelected" />
+        </label>
+      </th>
+      <!-- <td>{{user.id}}</td> -->
+      <td>
+        <span ng-show="user.displayName">{{user.displayName}}</span>
+        <span ng-show="!user.displayName">Not Set</span>
+      </td>
+      <td>{{user.email}}</td>
+      <td>{{user.username}}</td>
+      <td>
+        <span ng-show="user.role == 'admin'">Administrator</span>
+        <span ng-show="user.role == 'editor'">Editor</span>
+        <span ng-show="user.role == 'guest'">Guest</span>
+      </td>
+      <td>
+        <span ng-show="user.active == 1">Enabled</span>
+        <span ng-show="user.active == 0">Disabled</span>
+      </td>
+      <td>
+        <div class="btn-group btn-group-sm">
+          <button class="btn btn-warning" data-ng-click="vm.edit(user)">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-danger" data-ng-click="vm.remove(user)">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

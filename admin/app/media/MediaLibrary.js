@@ -17,6 +17,7 @@
     vm.update = update;
     vm.remove = remove;
     vm.search = search;
+    vm.refresh = refresh;
     // vm.countType = countType;
 
     vm.listdata = [];
@@ -59,6 +60,12 @@
       var limit = 1000;
       var helper = MediaCountHelper;
       vm.count = helper.count(limit);
+    }
+
+    function refresh(){
+      list(1);
+      vm.siteUrl = restconfig.siteUrl;
+      doCounting();
     }
 
 
@@ -160,6 +167,7 @@
     }
 
     function remove(media) {
+      console.log('MediaLibrary.remove',media);
       //remove from table in view
       var index = vm.listdata.indexOf(media);
       if (index > -1) vm.listdata.splice(index, 1);
@@ -175,8 +183,10 @@
       );
       //close ngDialog
       vm.dialog.close();
-      countMediaType();
+      doCounting();
     }
+
+
 
     function bulk() {
       logger.info(vm.bulkSelect);

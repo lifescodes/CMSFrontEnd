@@ -49,9 +49,11 @@
   #loading-bar .bar {
     background: #f0ad4e;
   }
+
   #loading-bar .peg {
     box-shadow: 0 0 10px #2c3e50, 0 0 5px #2c3e50;
   }
+
   #loading-bar-spinner .spinner-icon {
     border-top-color:  #2c3e50;
     border-left-color: #2c3e50;
@@ -59,17 +61,13 @@
   </style>
 
 </head>
-<body class="skin-blue"
-data-ng-include="'app/layout/view/main.html'"
-data-ng-controller="TopNav as vm" >
-
+<body class="skin-blue" data-ng-include="'app/layout/view/layout.html'" data-ng-controller="Layout as vm" >
 
 <!-- inject-vendor:js -->
 <script src="vendor/jquery/dist/jquery.js" type="text/javascript"></script>
 <script src="vendor/jqueryui/jquery-ui.js" type="text/javascript" ></script>
 <script src="vendor/raphael/raphael.js" type="text/javascript"></script>
 <!-- endinject -->
-
 
 <!-- inject-vendor-adminlte-&-plugins:js -->
 <script src="vendor/adminlte/js/plugins/morris/morris.min.js" type="text/javascript" ></script>
@@ -165,19 +163,24 @@ data-ng-controller="TopNav as vm" >
 <script src="app/rest/service/PostTagService.js"></script>
 <script src="app/rest/service/TagService.js"></script>
 <script src="app/rest/service/MediaFileService.js"></script>
+<script src="app/rest/service/UserService.js"></script>
 
 
 <!-- layout  -->
 <script src="app/layout/layout.module.js"></script>
 <script src="app/layout/Shell.js"></script>
-<script src="app/layout/TopNav.js"></script>
+<script src="app/layout/Layout.js"></script>
 <script src="app/layout/SideNav.js"></script>
+
+<!-- Dashboard -->
+<script src="app/dashboard/dashboard.module.js"></script>
+<script src="app/dashboard/config.route.js"></script>
+<script src="app/dashboard/Dashboard.js"></script>
 
 <!-- widget  -->
 <script src="app/widgets/widgets.module.js"></script>
 <script src="app/widgets/box.js"></script>
 <script src="app/widgets/boxdirective.js"></script>
-
 
 <!-- post -->
 <script src="app/post/post.module.js"></script>
@@ -190,8 +193,6 @@ data-ng-controller="TopNav as vm" >
 <script src="app/post/PostGetService.js"></script>
 <script src="app/post/PostPaginator.js"></script>
 
-
-
 <!-- tag -->
 <script src="app/tag/tag.module.js"></script>
 <script src="app/tag/config.route.js"></script>
@@ -201,7 +202,9 @@ data-ng-controller="TopNav as vm" >
 <script src="app/category/category.module.js"></script>
 <script src="app/category/config.route.js"></script>
 <script src="app/category/Category.js"></script>
+<script src="app/category/CategoryPaginator.js"></script>
 
+<!-- media -->
 <script src="app/media/media.module.js"></script>
 <script src="app/media/config.route.js"></script>
 <script src="app/media/MediaUpload.js"></script>
@@ -210,7 +213,11 @@ data-ng-controller="TopNav as vm" >
 <script src="app/media/VideoPlayer.js"></script>
 <script src="app/media/ngThumb.js"></script>
 
-
+<!-- User -->
+<script src="app/user/user.module.js"></script>
+<script src="app/user/config.route.js"></script>
+<script src="app/user/User.js"></script>
+<script src="app/user/UserPaginator.js"></script>
 
 
 </body>

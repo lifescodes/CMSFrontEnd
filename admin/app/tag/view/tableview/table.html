@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="tag in vm.listdata track by tag.id">
+    <tr ng-repeat="tag in vm.listdata track by tag.id" class="animate-repeat" >
       <th style="text-align: center;">
         <label>
           <input type="checkbox" name="child{{tag.id}}" value="{{tag.id}}" ng-checked="master" ng-model="tag.isSelected" />

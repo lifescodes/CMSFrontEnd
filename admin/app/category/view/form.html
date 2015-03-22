@@ -3,11 +3,11 @@
     <h3 class="box-title">Category Form</h3>
   </div>
   <div class="box-body">
-    <form nam="categoryForm" novalidate>
+    <form nam="categoryForm">
       <input type="text" name="id" data-ng-model="vm.category.id" style="display: none;">
       <div class="form-group">
         <label class="control-label">Name</label>
-        <input type="text" class="form-control" name="name" data-ng-model="vm.category.name">
+        <input type="text" class="form-control" name="name" data-ng-model="vm.category.name" ng-required="true">
         <p class="help-block">category name yang akan terlihat di halaman depan anda.</p>
       </div>
 
@@ -25,9 +25,9 @@
                 <option>
                   None
                 </option>
-                <option data-ng-repeat="cat in vm.listdata track by cat.id"
+                <option data-ng-repeat="cat in vm.paginator.data() track by cat.id"
                         data-ng-selected="cat.id === vm.category.parent"
-                        value="{{cat.id}}">
+                        value="{{cat.id}}" ng-hide="cat.name === 'Uncategorized'">
                         {{cat.name}}
                 </option>
         </select>
@@ -45,8 +45,11 @@
         <button class="btn btn-primary btn-flat" data-ng-click="vm.resetForm()">
           <i class="fa fa-refresh"></i> Reset
         </button>
-        <button type="submit" class="btn btn-primary btn-flat" data-ng-click="vm.save()">
+        <button type="submit" class="btn btn-primary btn-flat" data-ng-click="vm.save()" data-ng-show="!vm.category.id">
           <i class="fa fa-edit"></i> Save
+        </button>
+        <button type="submit" class="btn btn-primary btn-flat" data-ng-click="vm.update()" data-ng-show="vm.category.id">
+          <i class="fa fa-edit"></i> Update
         </button>
       </div>
       <div class="clearfix"></div>

@@ -1,8 +1,12 @@
-
-@import 'navbar.css';
+@import 'animate.css';
+@import 'animated.css';
+@import 'fader-animate.css';
+/*@import 'slide-animate.css';*/
+@import 'ngplus.css';
 @import 'logo.css';
 @import 'blogpost.css';
 @import 'widget.css';
 @import 'ngDialogOverride.css';
 @import 'media.css';
 @import 'videogular.css';
+@import 'lteinject.css';

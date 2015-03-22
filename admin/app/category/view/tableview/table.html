@@ -55,14 +55,17 @@
             <label ng-show="item.name == 'Uncategorized'">&nbsp;</label>
           </span>
           <span class="name-cell pull-left">{{ item.name }}</span>
-          <span class="desc-cell pull-left">{{item.descriptions}}</span>
+          <span class="desc-cell pull-left">
+            {{item.descriptions}}
+            <span ng-show="!item.descriptions">&nbsp;&nbsp;&nbsp;</span>
+          </span>
           <span class="counter-cell pull-left">{{item.counter}}</span>
           <span class="action-cell pull-right" ng-hide="item.name == 'Uncategorized'">
             <div class="btn-group btn-group-sm">
               <button class="btn btn-warning" ng-click="vm.edit(item)">
                 <i class="fa fa-edit"></i>
               </button>
-              <button class="btn btn-danger" ng-click="vm.delete(item)">
+              <button class="btn btn-danger" ng-click="vm.remove(item)">
                 <i class="fa fa-trash-o"></i>
               </button>
             </div>
@@ -74,7 +77,7 @@
   <ad-tree-browser class="ad-border-default"
                    tree-name="treeDemoBordered"
                    row-ng-class="{added:item._selected}"
-                   tree-root="vm.tree"
+                   tree-root="vm.paginator.tree()"
                    child-node="children"
                    children-padding="16"
                    bordered="false"

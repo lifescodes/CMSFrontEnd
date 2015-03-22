@@ -1,38 +1,24 @@
-<section class="content-header">
-  <h1>
-    Blog Post
-    <small>Post Add View</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Blog</a>
-    </li>
-    <li class="active">Post</li>
-  </ol>
-</section>
-
-<section class="content" id="content">
-  <!-- content view -->
-  <div class="row" data-ng-controller="PostForm as vm">
-    <div class="col-xs-9">
-      <div data-ng-include="'app/post/view/form/form.html'">
-      </div>
-    </div>
-
-    <div class="col-xs-3">
-      <div data-ng-include="'app/post/view/form/action.html'">
-      </div>
-    </div>
-    <!-- end box -->
-
-    <div class="col-xs-3">
-      <div data-ng-include="'app/post/view/form/category.html'">
-      </div>
-    </div>
-
-    <div class="col-xs-3">
-      <div data-ng-include="'app/post/view/form/tags.html'">
-      </div>
+<!-- content view -->
+<div class="row" data-ng-controller="PostForm as vm">
+  <div class="col-xs-9">
+    <div data-ng-include="'app/post/view/form/form.html'">
     </div>
   </div>
-  <!-- end row -->
-</section>
+
+  <div class="col-xs-3">
+    <div data-ng-include="'app/post/view/form/action.html'">
+    </div>
+  </div>
+  <!-- end box -->
+
+  <div class="col-xs-3">
+    <div data-ng-include="'app/post/view/form/category.html'">
+    </div>
+  </div>
+
+  <div class="col-xs-3">
+    <div data-ng-include="'app/post/view/form/tags.html'">
+    </div>
+  </div>
+</div>
+<!-- end row -->

@@ -19,7 +19,15 @@
         templateUrl: 'app/tag/view/tag.html',
         controller: 'Tag',
         controllerAs: 'vm',
-        title: 'Tag'
+        title: 'Tag',
+        section:{
+          title: 'Blog Tag',
+          small: 'View'
+        },
+        breadcumb: [
+          { name: "Blog", icon: "fa fa-dashboard" },
+          { name: "Tag", icon: "fa fa-picture-o" }
+        ],
       }
     }];
   }

@@ -1,0 +1,33 @@
+.skin-blue .navbar {
+  background: rgba(255,255,255,1);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+body > .header .navbar .sidebar-toggle {
+  color: black !important;
+  /*background-color: #DDD;*/
+  padding-left: 16px;
+  cursor: pointer;
+}
+
+.navbar-nav > li {
+  /*background-color: #DDD;*/
+  color: black;
+}
+
+.skin-blue .navbar .nav a{
+  color: black;
+  font-weight: normal;
+  /*background-color: #DDD;*/
+}
+
+.skin-blue .navbar .nav li:hover{
+  color: blue;
+  background-color: #000;
+}
+
+
+
+.skin-blue .navbar .sidebar-toggle:hover .icon-bar{
+  color: black !important;
+}

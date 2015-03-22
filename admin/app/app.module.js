@@ -22,10 +22,12 @@
     /*
      * Feature areas
      */
+    'app.dashboard',
     'app.post',
     'app.tag',
     'app.category',
     'app.media',
+    'app.user',
   ]);
 
 })();

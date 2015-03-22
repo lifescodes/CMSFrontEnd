@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="ps in vm.paginator.data() track by ps.id">
+    <tr ng-repeat="ps in vm.paginator.data() track by ps.id" class="repeat-item">
       <th style="text-align: center;">
         <label>
           <input type="checkbox" name="child{{ps.id}}" value="{{ps.id}}" data-ng-checked="vm.bulkCheck" data-ng-model="ps.isSelected" />

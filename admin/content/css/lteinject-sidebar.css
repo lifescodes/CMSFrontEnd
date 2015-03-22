@@ -1,0 +1,80 @@
+.left-side {
+  width: 200px;
+}
+
+.skin-blue .left-side {
+  background: rgba(54, 127, 169, 1);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-right: 1px solid rgba(0,0,0, 0.1);
+}
+
+.skin-blue .sidebar > .sidebar-menu > li{
+  background: rgba(41, 96, 127, 1);
+  color: white;
+  /*background: rgba(20, 48, 64, 1);*/
+}
+
+
+
+skin-blue .sidebar > .sidebar-menu > li:hover{
+  /*background: rgba(41, 96, 127, 1);*/
+  color: white;
+  /*background: rgba(20, 48, 64, 1);*/
+}
+
+
+.skin-blue .sidebar > .sidebar-menu > li.active{
+  background: rgba(41, 96, 127, 1);
+}
+
+.skin-blue .sidebar > .sidebar-menu > li.active > a{
+  font-weight: bolder;
+  color: #222;
+}
+
+.skin-blue .sidebar > .sidebar-menu > li > a {
+  font-weight: bolder;
+  /*color: rgba(0,0,0, 0.6);*/
+  color: white;
+}
+
+
+
+.skin-blue .sidebar > .sidebar-menu > li > a:hover,
+.skin-blue .sidebar > .sidebar-menu > li.active > a{
+  color: #222;
+  background: background: rgba(41, 96, 127, 1) !important;
+}
+
+
+
+.sidebar .sidebar-menu .treeview-menu > li > a{
+  font-weight: bold;
+  color: rgba(70,0,70,0.5);
+}
+
+.sidebar .sidebar-menu .treeview-menu > li > a:hover{
+  font-weight: bold;
+  color: rgba(70,70,0,0.5);
+}
+
+.sidebar .sidebar-menu .treeview-menu > li{
+  background: #d0d0d0;
+  color: rgba(70,70,70,0.5);
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.sidebar .sidebar-menu .treeview-menu > li:first{
+  border-top: 1px solid #dbdbdb;
+}
+
+.sidebar .sidebar-menu .treeview-menu > li:hover{
+  background: rgba(255,0,255,0.5);
+  color: rgba(70,70,70,0.5);
+}
+
+.skin-blue .sidebar > .sidebar-menu > li > .treeview-menu{
+
+}

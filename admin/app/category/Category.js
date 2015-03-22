@@ -5,23 +5,22 @@
   .module('app.category')
   .controller('Category', Category);
 
-  Category.$inject = ['CategoryService', 'logger'];
+  Category.$inject = ['CategoryService', 'CategoryPaginator', 'logger'];
 
-  function Category(CategoryService, logger) {
+  function Category(CategoryService, CategoryPaginator, logger) {
     /*jshint validthis: true */
     var vm = this;
 
-    vm.list = listCategory;
-    vm.get = getCategory;
-    vm.save = saveCategory;
-    vm.edit = editCategory;
-    // vm.update = updateCategory;
-    vm.delete = deleteCategory;
-    vm.search = searchCategory;
+    // vm.list = list;
+    vm.get = get;
+    vm.save = save;
+    vm.edit = edit;
+    vm.update = update;
+    vm.remove = remove;
+    vm.search = search;
 
 
-    vm.tree = { "children" : [] };
-    vm.listdata = {};
+    vm.paginator = CategoryPaginator;
 
     //base form model
     vm.category = {
@@ -33,101 +32,17 @@
     };
 
     vm.resetForm = resetForm;
-
     vm.bulk = bulk;
     vm.bulkSelect = "action";
 
-    vm.changePage = changePage;
-    vm.prevPage = prevPage;
-    vm.nextPage = nextPage;
-    vm.page = {
-      limit: 21,
-      current: 1,
-      total: 1,
-      totalArray: [],
-    };
-
     activate();
-
     function activate() {
-      listCategory(1);
-      listCategoryTree(1);
-      console.log('List =>',vm.listdata);
-      console.log('Tree =>',vm.tree);
-
-    }
-
-    function changePage(pos) {
-      vm.page.current = pos;
-      // vm.list = null;
-      listCategory(pos);
+      vm.paginator = CategoryPaginator;
+      vm.paginator.init();
     }
 
 
-    function nextPage() {
-      if (vm.page.current < vm.page.total) {
-        vm.page.current = vm.page.current + 1;
-        // vm.list = null;
-        listCategory(vm.page.current);
-      }
-    }
-
-    function prevPage() {
-      if (vm.page.current > 1) {
-        vm.page.current = vm.page.current - 1;
-        // vm.list = null;
-        listCategory(vm.page.current);
-      }
-    }
-
-    function countPage(count) {
-      vm.page.total = Math.ceil((count / vm.page.limit));
-      vm.page.totalArray = new Array(vm.page.total);
-    }
-
-
-    function listCategoryTree(pos){
-      var ls = CategoryService.tree();
-      if (pos !== undefined) {
-        ls = CategoryService.tree(pos, vm.page.limit);
-        vm.page.current = pos;
-      }
-
-      ls.then(
-        function(response) {
-          vm.tree.children = response;
-          vm.listcat = response;
-          countPage(vm.listdata.meta.count); // pagination
-        },
-        function(error) {
-          console.log(error);
-        }
-      );
-      return vm.list;
-    }
-
-    function listCategory(pos) {
-      var ls = CategoryService.list();
-      if (pos !== undefined) {
-        ls = CategoryService.list(pos, vm.page.limit);
-        vm.page.current = pos;
-      }
-
-      ls.then(
-        function(response) {
-          vm.list = response;
-          vm.listdata = response;
-          countPage(vm.list.meta.count); // pagination
-        },
-        function(error) {
-          console.log(error);
-        }
-      );
-      return vm.list;
-    }
-
-
-    function getCategory(id) {
+    function get(id) {
       CategoryService.get(id).then(
         function(data) {
           return data;
@@ -139,28 +54,19 @@
       );
     }
 
-    function saveCategory() {
-      if (vm.category.id === undefined || vm.category.id === null) {
-        save();
-        changePage(vm.page.total);
-        // listCategoryTree(1);
-      } else {
-        update();
-        listCategoryTree(1);
-      }
-    }
 
     function save() {
+      vm.category.counter = 0;
       var cCategory = angular.copy(vm.category);
       var sCategory = CategoryService.save(cCategory);
       console.log('save data => ',cCategory);
       sCategory.then(
         function(data) {
           var object = angular.copy(data);
-          vm.tree.children.push(object);
-          vm.listdata.push(object);
+          vm.paginator.tree().children.push(object);
+          vm.paginator.data().push(object);
           vm.category = null;
-          countPage(vm.list.meta.count); //pagination
+          vm.paginator.change(vm.paginator.total());
           logger.success('Category Saved Success!');
         },
         function(response) {
@@ -170,13 +76,13 @@
     }
 
     function update() {
-      var cCategory = angular.copy(vm.category);
-      var uCategory = CategoryService.update(vm.category.id, cCategory);
-      uCategory.then(
+      var ccat = angular.copy(vm.category);
+      var ucat = CategoryService.update(vm.category.id, ccat);
+      ucat.then(
         function(data) {
           var object = angular.copy(data);
-          console.log('update ', object);
           vm.category = null;
+          console.log('update ', object);
           logger.success('Category Updated Success!');
         },
         function(response) {
@@ -185,7 +91,7 @@
       );
     }
 
-    function editCategory(category) {
+    function edit(category) {
       // vm.category.id = category.id;
       // vm.category.name = category.name;
       // vm.category.parent = category.parent;
@@ -196,13 +102,17 @@
       console.log(category);
     }
 
-    function deleteCategory(category) {
-      //remove from table in view
-      var index = vm.tree.children.indexOf(category);
-      if (index > -1) vm.tree.children.splice(index, 1);
+    function remove(category) {
+      //remove from select option view
+      var index = vm.paginator.data().indexOf(category);
+      if (index > -1) vm.paginator.data().splice(index, 1);
+
+      var tree = vm.paginator.tree().children.indexOf(category);
+      if (tree > -1) vm.paginator.tree().children.splice(index, 1);
+
       //remove from rest service
-      var Categorysv = CategoryService.delete(category.id);
-      Categorysv.then(
+      var cs = CategoryService.remove(category.id);
+      cs.then(
         function(response) {
           console.log('delete => ', response);
           logger.success('Category Delete Success!');
@@ -216,17 +126,16 @@
     function bulk() {
       logger.info(vm.bulkSelect);
       if (vm.bulkSelect === "delete") {
-        vm.list.forEach(function(category) {
+        vm.paginator.data().forEach(function(category) {
           if (category.isSelected) {
             console.log(category);
             deleteCategory(category);
           }
         });
       }
-
     }
 
-    function searchCategory(keyword) {
+    function search(keyword) {
 
     }
 
